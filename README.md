@@ -51,7 +51,7 @@ ProofLayer is purpose-built to address the four equally-weighted judging criteri
 
 | Criterion (Weight) | What Judges Look For | How ProofLayer Delivers & Verifies |
 | :--- | :--- | :--- |
-| **🎨 1. Design (25%)** | A complete, coherent, and polished product experience. | **ProofLayer Studio**: Stripe/Apple high-precision light theme (`#F8FAFC`), 3-Tab Mission Control navigation (`Threat Console`, `Policy Playground & AST Compiler`, `Audit & Compliance Ledger`), real-time SSE stream, interactive React Flow Evidence DAG, dual-pane raw JSON & Merkle drawer, and Custom Tool Proposal Dispatcher workbench. |
+| **🎨 1. Design (25%)** | A complete, coherent, and polished product experience. | **ProofLayer Studio**: Stripe/Apple high-precision light theme (`#F8FAFC`), 4-Tab Mission Control navigation (`Executive Overview`, `Threat Console`, `Policy Playground & AST Compiler`, `Audit & Compliance Ledger`), real-time SSE stream with Clear/Delete controls, interactive React Flow Evidence DAG, dual-pane raw JSON & Merkle drawer, and Custom Tool Proposal Dispatcher workbench. |
 | **🌍 2. Potential Impact (25%)** | Solves an acute, real-world problem with credible utility. | Solves the existential crisis blocking enterprise deployment of tool-using agent swarms: **unbounded blast radius**. Fulfills **EU AI Act Article 14 (Human Oversight)** and **SOC2 Type II** with cryptographically verifiable Trust Receipts. |
 | **💡 3. Innovation / Idea (25%)** | Creative, novel engineering distinct from common templates. | **The Trust Compiler**: Replaces slow, probabilistic "LLM-as-a-judge" guardrails with **sub-millisecond (<0.05ms) deterministic AST invariant checks**, **Anti-TOCTOU SHA-256 payload binding**, and **multi-agent cryptographic provenance tracking**. |
 | **🎬 4. Presentation (25%)** | Clear end-to-end demonstration, problem framing, and easy flow. | **One-Click Red-Team Sandbox**: 6 pre-configured live adversarial scenarios (`5-Step Pipeline`, `Swarm Attack`, `SQL Drop Guard`, `Exfiltration Blocker`, `TOCTOU Tamper`, `Routine Pay`) paired with a second-by-second 3-minute video pitch storyboard. |
@@ -63,10 +63,11 @@ ProofLayer is purpose-built to address the four equally-weighted judging criteri
 ProofLayer delivers a cohesive, mission-critical operations console engineered for AI security teams and site reliability engineers:
 
 * **Stripe / Apple Developer High-Precision Light Theme (`#F8FAFC`)**: Crisp porcelain foundation, pure white cards, razor-sharp `#E2E8F0` borders, vibrant sapphire/indigo `#4F46E5` branding, and surgical micro-shadows.
-* **3-Tab Mission Control Navigation**:
-  - **Tab 1: Threat Console**: Real-time SSE Interception feed, interactive React Flow Evidence DAG, sliding Dual-Pane inspector drawer, and Dual-Signature 4-Eyes Gate modal.
-  - **Tab 2: Policy Playground & AST Compiler**: Dual-mode policy editor (Visual Builder + Raw JSON AST Editor) with inline threshold/operator editing, dynamic rule creation, and live SQLite gateway deployment.
-  - **Tab 3: Cryptographic Audit Ledger**: Visual Merkle Tree proof lineage, EU AI Act Art. 14 / SOC2 Type II regulatory crosswalk, and Trust Receipt export vault.
+* **4-Tab Mission Control Navigation**:
+  - **Tab 1: Executive Overview**: Safe payment lifecycle stepper (`AI Agent Request -> Blocked Violation -> Human Sign-off -> Verified Execution`), visual evidence graph, audit timeline, real-time policy events table, and live JSON AST policy editor.
+  - **Tab 2: Threat Console**: Real-time SSE Interception feed with Clear All & Selective Delete controls, interactive React Flow Evidence DAG, sliding Dual-Pane inspector drawer, and Dual-Signature 4-Eyes Gate modal.
+  - **Tab 3: Policy Playground & AST Compiler**: Dual-mode policy editor (Visual Builder + Raw JSON AST Editor) with inline threshold/operator editing, dynamic rule creation, and live SQLite gateway deployment.
+  - **Tab 4: Cryptographic Audit Ledger**: Visual Merkle Tree proof lineage, EU AI Act Art. 14 / SOC2 Type II regulatory crosswalk, and Trust Receipt export vault.
 * **Custom Tool Proposal Dispatcher Workbench**: Interactive modal allowing users to customize every subagent in the delegation tree (Agent ID, Privilege Tier, DelegatedBy), simulate arbitrary Confused Deputy attacks, and view real-time provenance taint diagnostics before dispatch.
 * **Dual-Signature 4-Eyes Gate**: Requires dual independent sign-off (`sarah.finance@internal` and `marcus.secops@internal`) cryptographically bound to the canonical payload hash via HMAC-SHA256.
 * **Trust Receipt Exporter**: One-click exporter generating tamper-proof JSON compliance receipts for enterprise GRC teams.
@@ -167,11 +168,11 @@ npm run dev
 *(Alternatively, run in two separate split terminals: `npm run server` and `npm run studio`)*
 
 ### 3. Experience the Live Demo
-1. Open **`http://localhost:3000`** in your browser.
-2. Click **`[⚡ 5-Step Pipeline]`** on the Red-Team bar to watch a complete multi-agent workflow execute live.
-3. Click **`[🔥 Swarm Attack ($1,200)]`** to watch ProofLayer catch a Confused Deputy attack in under 0.05ms.
-4. Select the held transaction in the Live Console &rarr; inspect the Evidence DAG &rarr; click **"Review & Authorize"** &rarr; sign with both Finance and SecOps keys &rarr; dispatch the tool safely.
-5. Click **"Export Trust Receipt"** to view and download the EU AI Act Article 14 compliance bundle.
+1. Open **`http://localhost:3000`** in your browser to view the **Executive Overview** safe payment lifecycle.
+2. Switch to **`Threat Console`** and click **`[⚡ 5-Step Pipeline]`** or **`[🔥 Swarm Attack ($1,200)]`** to watch ProofLayer catch attacks in under 0.05ms. Use the **`Clear`** button in the live stream header for a pristine reset anytime.
+3. Select any held transaction in the Live Console &rarr; inspect the Evidence DAG &rarr; click **"Review & Authorize"** &rarr; sign with both Finance and SecOps keys &rarr; dispatch the tool safely.
+4. Explore the **`Policy Playground`** to test custom invariants in microseconds and deploy them live to the SQLite gateway.
+5. Switch to **`Audit Ledger`** and click **"Export Trust Receipt"** to view and download the EU AI Act Article 14 compliance bundle.
 
 ---
 
@@ -210,7 +211,7 @@ All formal planning deliverables produced through the Devpost Learn Skill Pack a
 * 🎯 [**Scope Document**](devpost/scope.md) — Kernel boundary definition and anti-drift contracts.
 * 📋 [**Product Requirements Document (PRD)**](devpost/prd.md) — User journeys, state transitions, and edge cases.
 * 📐 [**Technical Specification**](devpost/spec.md) — Component architecture, Zod schemas, and SQLite DDL.
-* ✅ [**Build Checklist**](devpost/checklist.md) — 5-slice TDD verification log (30/30 tests).
+* ✅ [**Build Checklist**](devpost/checklist.md) — 5-slice TDD verification log (82/82 automated tests passing).
 * 🗺️ [**Interactive App Map**](devpost/app-map.html) — SVG architecture visualization and guided code tour.
 * 📝 [**Submission Guide**](devpost/submission-guide.md) — Ready-to-use Devpost form copy and video script.
 
