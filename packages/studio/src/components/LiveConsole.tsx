@@ -5,7 +5,8 @@ import {
   XCircle, 
   Clock, 
   Terminal,
-  Layers 
+  Layers,
+  Trash2
 } from 'lucide-react';
 
 export interface InterceptedItem {
@@ -25,9 +26,17 @@ interface LiveConsoleProps {
   items: InterceptedItem[];
   selectedId: string | null;
   onSelect: (id: string) => void;
+  onDeleteItem?: (id: string) => void;
+  onClearAll?: () => void;
 }
 
-export const LiveConsole: React.FC<LiveConsoleProps> = ({ items, selectedId, onSelect }) => {
+export const LiveConsole: React.FC<LiveConsoleProps> = ({ 
+  items, 
+  selectedId, 
+  onSelect,
+  onDeleteItem,
+  onClearAll 
+}) => {
   return (
     <div className="flex flex-col h-full bg-white border-r border-slate-200">
       {/* Console Header */}
@@ -38,9 +47,21 @@ export const LiveConsole: React.FC<LiveConsoleProps> = ({ items, selectedId, onS
             Interceptor Live Stream
           </h2>
         </div>
-        <span className="text-[11px] font-mono px-2 py-0.5 rounded-full bg-slate-200/70 text-slate-700 font-medium">
-          {items.length} events
-        </span>
+        <div className="flex items-center gap-2">
+          {onClearAll && items.length > 0 && (
+            <button
+              onClick={onClearAll}
+              title="Clear all events from stream and database"
+              className="inline-flex items-center gap-1 text-[11px] font-medium text-slate-500 hover:text-rose-600 hover:bg-rose-50 px-2 py-0.5 rounded border border-slate-200 hover:border-rose-200 transition-colors"
+            >
+              <Trash2 className="w-3 h-3" />
+              <span>Clear</span>
+            </button>
+          )}
+          <span className="text-[11px] font-mono px-2 py-0.5 rounded-full bg-slate-200/70 text-slate-700 font-medium">
+            {items.length} events
+          </span>
+        </div>
       </div>
 
       {/* Stream Items List */}
@@ -62,41 +83,55 @@ export const LiveConsole: React.FC<LiveConsoleProps> = ({ items, selectedId, onS
               <div
                 key={item.id}
                 onClick={() => onSelect(item.id)}
-                className={`p-3.5 cursor-pointer transition-all hover:bg-slate-50 ${
+                className={`group p-3.5 cursor-pointer transition-all hover:bg-slate-50 relative ${
                   isSelected 
                     ? 'bg-indigo-50/70 border-l-3 border-indigo-600 shadow-2xs' 
                     : 'border-l-3 border-transparent'
                 }`}
               >
-                {/* Header row: Status badge + Timestamp */}
+                {/* Header row: Status badge + Timestamp & Actions */}
                 <div className="flex items-center justify-between mb-1.5">
-                  <div className="flex items-center gap-1.5">
+                  <div className="flex items-center gap-1.5 min-w-0">
                     {isExecuted && (
-                      <span className="flex items-center gap-1 text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full bg-emerald-50 text-emerald-700 border border-emerald-200">
+                      <span className="flex items-center gap-1 text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full bg-emerald-50 text-emerald-700 border border-emerald-200 shrink-0">
                         <CheckCircle2 className="w-3 h-3" />
                         Executed
                       </span>
                     )}
                     {isPending && (
-                      <span className="flex items-center gap-1 text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full bg-amber-50 text-amber-800 border border-amber-200 animate-pulse">
+                      <span className="flex items-center gap-1 text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full bg-amber-50 text-amber-800 border border-amber-200 animate-pulse shrink-0">
                         <AlertTriangle className="w-3 h-3" />
                         Held for Review
                       </span>
                     )}
                     {isBlocked && (
-                      <span className="flex items-center gap-1 text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full bg-rose-50 text-rose-700 border border-rose-200">
+                      <span className="flex items-center gap-1 text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full bg-rose-50 text-rose-700 border border-rose-200 shrink-0">
                         <XCircle className="w-3 h-3" />
                         Blocked
                       </span>
                     )}
-                    <span className="text-[11px] font-mono text-slate-900 font-bold">
+                    <span className="text-[11px] font-mono text-slate-900 font-bold truncate">
                       {item.action}
                     </span>
                   </div>
 
-                  <span className="text-[10px] font-mono text-slate-400">
-                    {new Date(item.createdAt).toLocaleTimeString()}
-                  </span>
+                  <div className="flex items-center gap-1.5 shrink-0 ml-2">
+                    <span className="text-[10px] font-mono text-slate-400">
+                      {new Date(item.createdAt).toLocaleTimeString()}
+                    </span>
+                    {onDeleteItem && (
+                      <button
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          onDeleteItem(item.id);
+                        }}
+                        title="Delete this event"
+                        className="opacity-0 group-hover:opacity-100 hover:opacity-100 p-1 rounded text-slate-400 hover:text-rose-600 hover:bg-rose-50 transition-all"
+                      >
+                        <Trash2 className="w-3 h-3" />
+                      </button>
+                    )}
+                  </div>
                 </div>
 
                 {/* Subagent & Provenance origin */}

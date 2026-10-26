@@ -216,4 +216,31 @@ export class ProofLayerRepository {
       createdAt: row.created_at,
     }));
   }
+
+  public async deleteRequestById(id: string): Promise<void> {
+    await this.client.execute({
+      sql: 'DELETE FROM execution_requests WHERE id = ?;',
+      args: [id],
+    });
+    // Ensure cascade in case SQLite foreign_keys pragma is not active
+    await this.client.execute({
+      sql: 'DELETE FROM evidence_nodes WHERE request_id = ?;',
+      args: [id],
+    });
+    await this.client.execute({
+      sql: 'DELETE FROM approvals WHERE request_id = ?;',
+      args: [id],
+    });
+    await this.client.execute({
+      sql: 'DELETE FROM tool_executions WHERE request_id = ?;',
+      args: [id],
+    });
+  }
+
+  public async clearAllRequests(): Promise<void> {
+    await this.client.execute('DELETE FROM execution_requests;');
+    await this.client.execute('DELETE FROM evidence_nodes;');
+    await this.client.execute('DELETE FROM approvals;');
+    await this.client.execute('DELETE FROM tool_executions;');
+  }
 }

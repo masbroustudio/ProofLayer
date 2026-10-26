@@ -102,6 +102,30 @@ export const App: React.FC = () => {
     );
   };
 
+  const handleClearAll = async () => {
+    try {
+      await fetch('/api/requests', { method: 'DELETE' });
+      setItems([]);
+      setSelectedId(null);
+      setInspectedNode(null);
+    } catch (err) {
+      console.error('Failed to clear requests:', err);
+    }
+  };
+
+  const handleDeleteItem = async (id: string) => {
+    try {
+      await fetch(`/api/requests/${id}`, { method: 'DELETE' });
+      setItems((prev) => prev.filter((item) => item.id !== id));
+      if (selectedId === id) {
+        setSelectedId(null);
+        setInspectedNode(null);
+      }
+    } catch (err) {
+      console.error('Failed to delete request:', err);
+    }
+  };
+
   return (
     <div className="flex flex-col h-screen w-screen bg-slate-50 text-slate-900 overflow-hidden font-sans">
       {/* Top Bar with Brand, Tabs, and Telemetry */}
@@ -134,7 +158,9 @@ export const App: React.FC = () => {
               onSelect={(id) => {
                 setSelectedId(id);
                 setInspectedNode(null);
-              }} 
+              }}
+              onDeleteItem={handleDeleteItem}
+              onClearAll={handleClearAll}
             />
           </aside>
 

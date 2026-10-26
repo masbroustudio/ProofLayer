@@ -105,6 +105,14 @@ export async function createServer(options: ServerOptions = {}): Promise<{
   app.get('/api/health', async () => ({ status: 'ok', timestamp: Date.now() }));
   app.get('/api/policies', async () => await repo.getPolicies());
   app.get('/api/requests', async () => await repo.getRecentRequests(30));
+  app.delete('/api/requests', async (_req, reply) => {
+    await repo.clearAllRequests();
+    return reply.send({ status: 'cleared' });
+  });
+  app.delete<{ Params: { id: string } }>('/api/requests/:id', async (req, reply) => {
+    await repo.deleteRequestById(req.params.id);
+    return reply.send({ status: 'deleted', id: req.params.id });
+  });
   app.put<{ Params: { id: string }; Body: { policy: PolicyAST } }>(
     '/api/policies/:id',
     async (req, reply) => {
