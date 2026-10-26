@@ -1,7 +1,7 @@
 # ProofLayer
 
 [![Hackathon](https://img.shields.io/badge/Devpost-Build%20With%20AI%3A%20Basics-blue.svg)](https://learn-ai-basics.devpost.com/)
-[![Tests](https://img.shields.io/badge/Tests-30%2F30%20Passing-brightgreen.svg)](https://github.com/challengepost/learn-ai-basics)
+[![Tests](https://img.shields.io/badge/Tests-31%2F31%20Passing-brightgreen.svg)](https://github.com/challengepost/learn-ai-basics)
 [![Latency](https://img.shields.io/badge/Invariant%20Latency-%3C0.05ms-orange.svg)](#-pillar-3-innovation--idea-25)
 [![Token Cost](https://img.shields.io/badge/Runtime%20Cost-%240.00-brightgreen.svg)](#-pillar-3-innovation--idea-25)
 [![Compliance](https://img.shields.io/badge/Compliance-EU%20AI%20Act%20Art.%2014-purple.svg)](#-pillar-2-potential-impact-25)
@@ -50,10 +50,10 @@ ProofLayer is purpose-built to address the four equally-weighted judging criteri
 
 | Criterion (Weight) | What Judges Look For | How ProofLayer Delivers & Verifies |
 | :--- | :--- | :--- |
-| **🎨 1. Design (25%)** | A complete, coherent, and polished product experience. | **ProofLayer Studio**: Dark-mode telemetry console (`#0A0E17`), real-time Server-Sent Events (SSE) tool feed, interactive React Flow Evidence DAG, dual-pane raw JSON & Merkle inspector drawer, and dual-signature approval modal. |
+| **🎨 1. Design (25%)** | A complete, coherent, and polished product experience. | **ProofLayer Studio**: Stripe/Apple high-precision light theme (`#F8FAFC`), 3-Tab Mission Control navigation (`Threat Console`, `Policy Playground & AST Compiler`, `Audit & Compliance Ledger`), real-time SSE stream, interactive React Flow Evidence DAG, dual-pane raw JSON & Merkle drawer, and Custom Tool Proposal Dispatcher workbench. |
 | **🌍 2. Potential Impact (25%)** | Solves an acute, real-world problem with credible utility. | Solves the existential crisis blocking enterprise deployment of tool-using agent swarms: **unbounded blast radius**. Fulfills **EU AI Act Article 14 (Human Oversight)** and **SOC2 Type II** with cryptographically verifiable Trust Receipts. |
 | **💡 3. Innovation / Idea (25%)** | Creative, novel engineering distinct from common templates. | **The Trust Compiler**: Replaces slow, probabilistic "LLM-as-a-judge" guardrails with **sub-millisecond (<0.05ms) deterministic AST invariant checks**, **Anti-TOCTOU SHA-256 payload binding**, and **multi-agent cryptographic provenance tracking**. |
-| **🎬 4. Presentation (25%)** | Clear end-to-end demonstration, problem framing, and easy flow. | **One-Click Red-Team Sandbox**: 6 pre-configured live adversarial scenarios (`5-Step Pipeline`, `Swarm Attack`, `SQL Drop Guard`, `Exfiltration Blocker`, `TOCTOU Tamper`, `Routine Pay`) paired with a 3-minute video pitch storyboard. |
+| **🎬 4. Presentation (25%)** | Clear end-to-end demonstration, problem framing, and easy flow. | **One-Click Red-Team Sandbox**: 6 pre-configured live adversarial scenarios (`5-Step Pipeline`, `Swarm Attack`, `SQL Drop Guard`, `Exfiltration Blocker`, `TOCTOU Tamper`, `Routine Pay`) paired with a second-by-second 3-minute video pitch storyboard. |
 
 ---
 
@@ -61,11 +61,13 @@ ProofLayer is purpose-built to address the four equally-weighted judging criteri
 
 ProofLayer delivers a cohesive, mission-critical operations console engineered for AI security teams and site reliability engineers:
 
-* **Dark High-Density Telemetry Console (`#0A0E17`)**: Visual hierarchy designed after Linear and Datadog, surfacing live latency counters, active policies, and tool execution status chips (`EXECUTED`, `HELD_FOR_REVIEW`, `BLOCKED`).
-* **Real-Time Tool Interceptor Feed**: Streamed via low-overhead Server-Sent Events (SSE), eliminating manual browser polling.
-* **Interactive React Flow Evidence DAG**: Visualizes execution lineage from `AGENT_INTENT` &rarr; `POLICY_CHECK` &rarr; `APPROVAL` &rarr; `TOOL_EXECUTION` with color-coded node states (emerald for verified, amber for held, rose for blocked).
-* **Dual-Pane Inspector Drawer**: Sliding drawer revealing formatted canonical JSON with highlighted parameters side by side with the cryptographic Merkle lineage tree.
-* **Dual-Signature 4-Eyes Gate**: Requires dual independent sign-off (`sarah.finance@internal` and `marcus.secops@internal`) cryptographically bound to the payload hash.
+* **Stripe / Apple Developer High-Precision Light Theme (`#F8FAFC`)**: Crisp porcelain foundation, pure white cards, razor-sharp `#E2E8F0` borders, vibrant sapphire/indigo `#4F46E5` branding, and surgical micro-shadows.
+* **3-Tab Mission Control Navigation**:
+  - **Tab 1: Threat Console**: Real-time SSE Interception feed, interactive React Flow Evidence DAG, sliding Dual-Pane inspector drawer, and Dual-Signature 4-Eyes Gate modal.
+  - **Tab 2: Policy Playground & AST Compiler**: Dual-mode policy editor (Visual Builder + Raw JSON AST Editor) with inline threshold/operator editing, dynamic rule creation, and live SQLite gateway deployment.
+  - **Tab 3: Cryptographic Audit Ledger**: Visual Merkle Tree proof lineage, EU AI Act Art. 14 / SOC2 Type II regulatory crosswalk, and Trust Receipt export vault.
+* **Custom Tool Proposal Dispatcher Workbench**: Interactive modal allowing users to customize every subagent in the delegation tree (Agent ID, Privilege Tier, DelegatedBy), simulate arbitrary Confused Deputy attacks, and view real-time provenance taint diagnostics before dispatch.
+* **Dual-Signature 4-Eyes Gate**: Requires dual independent sign-off (`sarah.finance@internal` and `marcus.secops@internal`) cryptographically bound to the canonical payload hash via HMAC-SHA256.
 * **Trust Receipt Exporter**: One-click exporter generating tamper-proof JSON compliance receipts for enterprise GRC teams.
 
 ---
@@ -139,16 +141,16 @@ ProofLayer uses `@libsql/client` (pure TypeScript/WebAssembly SQLite with WAL mo
 * **Node.js**: v20+ or v22+
 * **npm**: v10+
 
-### 1. Clone & Verify Test Suite (30/30 Tests Passing)
+### 1. Clone & Verify Test Suite (31/31 Tests Passing)
 ```bash
 git clone https://github.com/your-username/ProofLayer.git
 cd ProofLayer
 npm install
 
-# Run 30 automated Vitest unit & integration tests
+# Run 31 automated Vitest unit & integration tests
 npm test
 ```
-*All 30 unit & integration tests complete in ~3.3 seconds.*
+*All 31 unit & integration tests complete in ~3.4 seconds.*
 
 ### 2. Launch Local Environment (Two-Terminal Split)
 

@@ -40,7 +40,9 @@ We built **ProofLayer** as senior systems engineers who believe enterprise AI sa
 * **Anti-TOCTOU Cryptographic Payload Binding**: Calculates the canonical `SHA-256` digest of the exact tool payload. Human approval tokens are signed with `HMAC-SHA256` and single-use replay-proof nonces, mathematically preventing parameter mutation between review and execution.
 * **Zero-Trust Multi-Agent Provenance Traversal**: Inspects the entire subagent delegation tree (`[Scraper] -> [Coordinator] -> [Executor]`). If an untrusted worker agent is detected in the provenance chain of a high-privilege tool call, execution is immediately halted.
 * **Dual-Signature 4-Eyes Gate**: Requires dual independent authorization from both Finance (`sarah.finance@internal`) and SecOps (`marcus.secops@internal`) before critical financial or database actions can proceed.
-* **ProofLayer Studio Telemetry Console**: A high-density dark-mode operations dashboard (`#0A0E17`) featuring real-time Server-Sent Events (SSE) tool call feeds, an interactive React Flow Evidence DAG, and a sliding Dual-Pane raw JSON / Merkle proof inspector.
+* **ProofLayer Studio Telemetry Console**: A high-precision Stripe/Apple developer console featuring 3-Tab Mission Control navigation (`Threat Console`, `Policy Playground & AST Compiler`, `Audit & Compliance Ledger`), real-time Server-Sent Events (SSE) tool feeds, interactive React Flow Evidence DAG, sliding Dual-Pane raw JSON / Merkle inspector, and printable compliance views.
+* **Dual-Mode Interactive Policy Studio**: Full manual policy customization via Visual Builder and Raw JSON AST Editor, allowing engineers to modify invariants inline, test payloads in microseconds, and deploy updates directly to the live SQLite gateway with zero server restarts.
+* **Custom Tool Proposal Workbench**: An interactive simulation modal where engineers can customize every subagent in the delegation tree (Agent ID, Privilege Tier, DelegatedBy), test arbitrary Confused Deputy attack vectors, and view real-time provenance taint diagnostics before dispatch.
 * **Verifiable Trust Receipts**: Exports tamper-proof audit bundles with Merkle tree proofs, directly satisfying regulatory compliance under **EU AI Act Article 14 (Human Oversight)** and **SOC2 Type II**.
 * **One-Click Red-Team Sandbox**: Includes 6 pre-configured adversarial simulation scenarios in the UI (`5-Step Pipeline`, `Swarm Attack`, `SQL Drop Guard`, `Exfiltration Blocker`, `TOCTOU Tamper`, and `Routine Pay`) to demonstrate live attack interception.
 
@@ -53,7 +55,7 @@ We engineered ProofLayer as a clean monorepo adhering strictly to the **Well-Arc
 * **Engine Core (`@prooflayer/core`)**: Pure TypeScript formal verification runtime. Implements the AST invariant evaluator, deterministic JSON canonicalization, SHA-256 payload hashing, HMAC-SHA256 signature verification, multi-agent provenance tree validation, and Merkle-linked audit nodes.
 * **Backend API & Gateway (`@prooflayer/server`)**: High-throughput Fastify server running on Node.js 22. Uses `@libsql/client` (Turso open source SQLite with Write-Ahead Logging) for lightweight, cross-platform persistence with zero native C++ build dependencies. Exposes REST endpoints for policy management, human approvals, and real-time SSE event streaming (`/api/events`).
 * **Frontend Operations Studio (`@prooflayer/studio`)**: Modern dark console built with Vite 6, React 19, and Tailwind CSS 4. Features `@xyflow/react` for interactive DAG visualization with custom styled nodes, dynamic SSE hooks, and multi-signature authorization modals.
-* **Testing & Quality Assurance**: 30 automated Vitest unit and integration tests verifying all 6 simulation scenarios, crypto signatures, AST edge cases, and SQLite persistence in 3.3 seconds.
+* **Testing & Quality Assurance**: 31 automated Vitest unit and integration tests verifying all 6 simulation scenarios, dynamic policy hot-reloading, crypto signatures, AST edge cases, and SQLite persistence in 3.4 seconds.
 
 ---
 
@@ -68,7 +70,7 @@ We engineered ProofLayer as a clean monorepo adhering strictly to the **Well-Arc
 
 ## 5. Accomplishments That We're Proud Of
 
-* **100% Automated Test Pass Rate**: 30/30 Vitest tests executing across 6 test suites in ~3.3 seconds.
+* **100% Automated Test Pass Rate**: 31/31 Vitest tests executing across 6 test suites in ~3.4 seconds.
 * **50,000× Latency Improvement**: Reduced tool safety evaluation latency from ~2,500ms (LLM-as-a-judge) to **<0.05ms**, with a **100% reduction in marginal evaluation costs ($0.00 token cost)**.
 * **Dual-Signature 4-Eyes Gate**: Implemented a realistic corporate governance gate requiring independent Finance and SecOps signatures before high-risk execution.
 * **Zero AI Slop / Zero Hallucination**: Every safety decision is mathematically and cryptographically provable.

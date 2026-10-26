@@ -9,7 +9,8 @@ import {
   generateNonce,
   type ExecutionRequest,
   type SignedApprovalToken,
-  type ApprovalPayload
+  type ApprovalPayload,
+  type PolicyAST
 } from '@prooflayer/core';
 import { initDb, runMigrations } from './db/client.js';
 import { ProofLayerRepository } from './db/repository.js';
