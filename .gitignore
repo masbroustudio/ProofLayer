@@ -9,3 +9,5 @@ coverage/
 *.sqlite-wal
 *.sqlite-shm
 /devpost/learner-profile.md
+.claude/
+agent/

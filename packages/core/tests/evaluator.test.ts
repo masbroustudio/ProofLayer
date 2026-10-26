@@ -54,6 +54,34 @@ describe('TDD: Deterministic AST Invariant Evaluator (<2ms, $0 Token Cost)', () 
     expect(result.failedInvariants).toContain('inv-allowed-currency');
   });
 
+  it('not_regex operator: blocks SQL query containing destructive DROP TABLE', () => {
+    const sqlPolicy: PolicyAST = {
+      id: 'policy-sql-test',
+      name: 'SQL Safety Guard',
+      version: 1,
+      actionPattern: 'database.*',
+      invariants: [
+        {
+          id: 'inv-no-destructive-sql',
+          field: 'query',
+          operator: 'not_regex',
+          value: 'DROP|TRUNCATE|DELETE\\s+FROM',
+          failureAction: 'deny',
+          failureMessage: 'Destructive SQL mutations are prohibited',
+        },
+      ],
+    };
+
+    const safePayload = { query: 'SELECT * FROM users WHERE active = 1;' };
+    const safeResult = evaluateInvariants(sqlPolicy, safePayload);
+    expect(safeResult.decision).toBe('allow');
+
+    const destructivePayload = { query: 'DROP TABLE customers_prod CASCADE;' };
+    const destructiveResult = evaluateInvariants(sqlPolicy, destructivePayload);
+    expect(destructiveResult.decision).toBe('deny');
+    expect(destructiveResult.failedInvariants).toContain('inv-no-destructive-sql');
+  });
+
   it('fails closed (DENY) when mandatory invariant fields are missing from payload', () => {
     // Missing 'amount' entirely
     const payload = { currency: 'USD', recipient: 'No Amount' };

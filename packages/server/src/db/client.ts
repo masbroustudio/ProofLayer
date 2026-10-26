@@ -148,8 +148,57 @@ export const DEFAULT_CLOUD_POLICY: PolicyAST = {
   ],
 };
 
+export const DEFAULT_SQL_POLICY: PolicyAST = {
+  id: 'policy-sql-001',
+  name: 'Production Database Mutation Guard',
+  version: 1,
+  actionPattern: 'database.mutate',
+  requiredPrivilegeTier: 'admin',
+  invariants: [
+    {
+      id: 'inv-no-destructive-sql',
+      field: 'query',
+      operator: 'not_regex',
+      value: 'DROP|TRUNCATE|DELETE\\s+FROM',
+      failureAction: 'deny',
+      failureMessage: 'Destructive SQL operations (DROP/TRUNCATE/DELETE) are strictly prohibited on database',
+    },
+    {
+      id: 'inv-prod-mutation-gate',
+      field: 'environment',
+      operator: 'neq',
+      value: 'production',
+      failureAction: 'require_approval',
+      failureMessage: 'Mutations targeting production environment require explicit Dual-SecOps sign-off',
+    },
+  ],
+};
+
+export const DEFAULT_EXFIL_POLICY: PolicyAST = {
+  id: 'policy-exfil-001',
+  name: 'Outbound PII & Secret Exfiltration Guard',
+  version: 1,
+  actionPattern: 'network.*',
+  requiredPrivilegeTier: 'worker',
+  invariants: [
+    {
+      id: 'inv-no-leaked-secrets',
+      field: 'body',
+      operator: 'not_regex',
+      value: 'sk-[a-zA-Z0-9_-]{10,}|\\b\\d{3}-\\d{2}-\\d{4}\\b|password=',
+      failureAction: 'deny',
+      failureMessage: 'Outbound payload contains detected API secrets (sk-...) or PII (SSN). Blocked by Zero-Trust DLP boundary.',
+    },
+  ],
+};
+
 async function seedDefaultPolicies(client: Client): Promise<void> {
-  const policies = [DEFAULT_PAYMENT_POLICY, DEFAULT_CLOUD_POLICY];
+  const policies = [
+    DEFAULT_PAYMENT_POLICY, 
+    DEFAULT_CLOUD_POLICY, 
+    DEFAULT_SQL_POLICY, 
+    DEFAULT_EXFIL_POLICY
+  ];
 
   for (const policy of policies) {
     await client.execute({

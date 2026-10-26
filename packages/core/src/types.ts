@@ -12,7 +12,8 @@ export type InvariantOperator =
   | 'neq' 
   | 'in' 
   | 'not_in' 
-  | 'regex';
+  | 'regex'
+  | 'not_regex';
 
 export type InvariantFailureAction = 'deny' | 'require_approval';
 

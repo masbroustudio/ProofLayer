@@ -36,9 +36,11 @@ describe('Slice 1 Integration: Fastify Server with @libsql/client SQLite & SSE T
     });
     expect(res.statusCode).toBe(200);
     const policies = res.json();
-    expect(policies).toHaveLength(2);
+    expect(policies).toHaveLength(4);
     expect(policies.some((p: any) => p.id === 'policy-fin-001')).toBe(true);
     expect(policies.some((p: any) => p.id === 'policy-cloud-001')).toBe(true);
+    expect(policies.some((p: any) => p.id === 'policy-sql-001')).toBe(true);
+    expect(policies.some((p: any) => p.id === 'policy-exfil-001')).toBe(true);
   });
 
   it('POST /api/interceptor/propose allows routine payment (<$500)', async () => {
@@ -93,6 +95,55 @@ describe('Slice 1 Integration: Fastify Server with @libsql/client SQLite & SSE T
     const body = res.json();
     expect(body.result.status).toBe('blocked');
     expect(body.result.error).toBe('PAYLOAD_HASH_MISMATCH');
+  });
+
+  it('POST /api/sandbox/simulate triggers SQL_DROP_GUARD and blocks destructive statement', async () => {
+    const res = await app.inject({
+      method: 'POST',
+      url: '/api/sandbox/simulate',
+      payload: {
+        scenario: 'SQL_DROP_GUARD',
+      },
+    });
+
+    expect(res.statusCode).toBe(200);
+    const body = res.json();
+    expect(body.result.status).toBe('blocked');
+    expect(body.result.reason).toContain('Destructive SQL operations');
+  });
+
+  it('POST /api/sandbox/simulate triggers DATA_EXFILTRATION and halts secret outbound payload', async () => {
+    const res = await app.inject({
+      method: 'POST',
+      url: '/api/sandbox/simulate',
+      payload: {
+        scenario: 'DATA_EXFILTRATION',
+      },
+    });
+
+    expect(res.statusCode).toBe(200);
+    const body = res.json();
+    expect(body.result.status).toBe('blocked');
+    expect(body.result.reason).toContain('detected API secrets');
+  });
+
+  it('POST /api/sandbox/simulate triggers CONTINUOUS_PIPELINE and completes all 5 agentic steps', async () => {
+    const res = await app.inject({
+      method: 'POST',
+      url: '/api/sandbox/simulate',
+      payload: {
+        scenario: 'CONTINUOUS_PIPELINE',
+      },
+    });
+
+    expect(res.statusCode).toBe(200);
+    const body = res.json();
+    expect(body.steps).toHaveLength(5);
+    expect(body.steps[0].result.status).toBe('executed'); // Parse invoice
+    expect(body.steps[1].result.status).toBe('executed'); // Query vendor db
+    expect(body.steps[2].result.status).toBe('executed'); // Clean payment $45
+    expect(body.steps[3].result.status).toBe('blocked');  // Hijacked payment $8500
+    expect(body.steps[4].result.status).toBe('blocked');  // Exfiltration attempt
   });
 
   it('High-Value Payment flow: holds for approval, signs HMAC, executes safely', async () => {

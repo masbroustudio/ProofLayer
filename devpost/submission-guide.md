@@ -52,4 +52,4 @@ npm run server
 # Terminal 2: Start Studio Frontend (Port 3000)
 npm run studio
 ```
-Open **`http://localhost:3000`** in your browser. All three red-team buttons (`Swarm Attack`, `TOCTOU Tamper`, `Routine Payment`) work out-of-the-box.
+Open **`http://localhost:3000`** in your browser. All 6 red-team simulation buttons (`5-Step Pipeline`, `Swarm Attack`, `SQL Drop Guard`, `Exfiltration Blocker`, `TOCTOU Tamper`, `Routine Pay`) work out-of-the-box.

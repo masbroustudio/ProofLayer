@@ -19,7 +19,9 @@ function checkOperator(actual: any, operator: InvariantRule['operator'], expecte
     case 'not_in':
       return Array.isArray(expected) && !expected.includes(actual);
     case 'regex':
-      return typeof actual === 'string' && new RegExp(expected).test(actual);
+      return typeof actual === 'string' && new RegExp(expected, 'i').test(actual);
+    case 'not_regex':
+      return typeof actual === 'string' && !new RegExp(expected, 'i').test(actual);
     default:
       return false;
   }
