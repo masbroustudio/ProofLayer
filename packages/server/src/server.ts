@@ -28,8 +28,8 @@ export async function createServer(options: ServerOptions = {}): Promise<{
   interceptor: ProofLayerInterceptor;
   broadcaster: EventBroadcaster;
 }> {
-  const dbUrl = options.dbUrl || 'file:prooflayer.sqlite';
-  const secretKey = options.secretKey || 'prooflayer-enterprise-secret-2026';
+  const dbUrl = options.dbUrl || process.env.DATABASE_URL || 'file:prooflayer.sqlite';
+  const secretKey = options.secretKey || process.env.SECRET_KEY || 'prooflayer-enterprise-secret-2026';
 
   const client = initDb(dbUrl);
   await runMigrations(client);
