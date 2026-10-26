@@ -115,6 +115,7 @@ export const App: React.FC = () => {
       {/* Red-Team Adversarial Sandbox Runner (Persistent Header across tabs) */}
       <RedTeamBar 
         onSimulationTriggered={() => {
+          setInspectedNode(null);
           if (activeTab !== 'console') {
             setActiveTab('console');
           }
@@ -127,7 +128,14 @@ export const App: React.FC = () => {
         <div className="flex flex-1 overflow-hidden relative">
           {/* Left Column: Live Interceptor Stream (360px) */}
           <aside className="w-80 sm:w-96 flex-shrink-0 h-full">
-            <LiveConsole items={items} selectedId={selectedId} onSelect={setSelectedId} />
+            <LiveConsole 
+              items={items} 
+              selectedId={selectedId} 
+              onSelect={(id) => {
+                setSelectedId(id);
+                setInspectedNode(null);
+              }} 
+            />
           </aside>
 
           {/* Center / Right Panel: Studio Working Canvas & React Flow DAG */}

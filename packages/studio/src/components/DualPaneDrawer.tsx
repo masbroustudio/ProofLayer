@@ -159,6 +159,16 @@ export const DualPaneDrawer: React.FC<DualPaneDrawerProps> = ({ node, onClose })
                   <div><span className="text-slate-400">Payload Hash Bound:</span> {node.data.payloadHash}</div>
                   <div><span className="text-slate-400">HMAC Signature:</span> {node.data.signature?.slice(0, 24)}...</div>
                 </div>
+              ) : node.type === 'EXECUTION' ? (
+                <div className="space-y-1 text-[11px]">
+                  <div className="flex items-center justify-between">
+                    <span className="text-slate-500">Execution Status:</span>
+                    <span className="text-emerald-700 font-bold font-mono">VERIFIED_DISPATCHED</span>
+                  </div>
+                  <div className="text-slate-600 pt-0.5">
+                    Tool payload executed safely within cryptographically enforced policy boundaries.
+                  </div>
+                </div>
               ) : (
                 <div className="text-slate-600 text-[11px]">
                   Target: {node.data?.action || 'Protected Operation'} | Agent: {node.data?.agentId || 'Swarm'}

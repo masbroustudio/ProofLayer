@@ -44,7 +44,7 @@ export const EvidenceGraph: React.FC<EvidenceGraphProps> = ({ requestId, status,
           const mappedNodes: Node[] = dag.nodes.map((n: any, idx: number) => ({
             id: n.id,
             type: 'evidenceNode',
-            position: { x: 50 + idx * 300, y: 150 },
+            position: { x: 50 + idx * 360, y: 150 },
             data: {
               ...n,
             },

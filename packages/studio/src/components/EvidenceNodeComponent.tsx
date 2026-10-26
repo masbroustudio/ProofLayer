@@ -57,7 +57,7 @@ export const EvidenceNodeComponent: React.FC<any> = ({ data, selected }) => {
 
   return (
     <div
-      className={`w-60 rounded-xl bg-white border p-3.5 shadow-xs transition-all cursor-pointer ${borderClass} ${
+      className={`w-72 sm:w-80 rounded-xl bg-white border p-3.5 shadow-xs transition-all cursor-pointer ${borderClass} ${
         selected ? 'ring-2 ring-indigo-600 ring-offset-2 ring-offset-white' : ''
       }`}
     >
@@ -85,7 +85,7 @@ export const EvidenceNodeComponent: React.FC<any> = ({ data, selected }) => {
       </div>
 
       {/* Label / Description */}
-      <p className="text-xs font-bold text-slate-900 line-clamp-2 mb-2 leading-tight">
+      <p className="text-xs font-bold text-slate-900 line-clamp-3 mb-2 leading-tight">
         {data.label}
       </p>
 
