@@ -8,6 +8,7 @@ import { ApprovalModal } from './components/ApprovalModal.js';
 import { TrustReceiptModal } from './components/TrustReceiptModal.js';
 import { PolicyPlayground } from './components/PolicyPlayground.js';
 import { AuditLedger } from './components/AuditLedger.js';
+import { CustomProposalModal } from './components/CustomProposalModal.js';
 import { Network, Terminal, FileCheck2, UserCheck } from 'lucide-react';
 
 export const App: React.FC = () => {
@@ -21,6 +22,7 @@ export const App: React.FC = () => {
   // Modal States
   const [showApprovalModal, setShowApprovalModal] = useState<boolean>(false);
   const [showReceiptModal, setShowReceiptModal] = useState<boolean>(false);
+  const [showCustomModal, setShowCustomModal] = useState<boolean>(false);
 
   // 1. Initial Load: Policies & Recent Requests
   useEffect(() => {
@@ -111,11 +113,14 @@ export const App: React.FC = () => {
       />
 
       {/* Red-Team Adversarial Sandbox Runner (Persistent Header across tabs) */}
-      <RedTeamBar onSimulationTriggered={() => {
-        if (activeTab !== 'console') {
-          setActiveTab('console');
-        }
-      }} />
+      <RedTeamBar 
+        onSimulationTriggered={() => {
+          if (activeTab !== 'console') {
+            setActiveTab('console');
+          }
+        }} 
+        onOpenCustomModal={() => setShowCustomModal(true)}
+      />
 
       {/* Tab 1: Live Threat Console View */}
       {activeTab === 'console' && (
@@ -229,6 +234,19 @@ export const App: React.FC = () => {
 
       {/* Tab 3: Cryptographic Audit & Compliance Ledger View */}
       {activeTab === 'ledger' && <AuditLedger />}
+
+      {/* Custom Tool Call Proposal Dispatcher Modal */}
+      {showCustomModal && (
+        <CustomProposalModal
+          onClose={() => setShowCustomModal(false)}
+          onSuccess={(result) => {
+            setActiveTab('console');
+            if (result.request?.id) {
+              setSelectedId(result.request.id);
+            }
+          }}
+        />
+      )}
     </div>
   );
 };

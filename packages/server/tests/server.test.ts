@@ -43,6 +43,54 @@ describe('Slice 1 Integration: Fastify Server with @libsql/client SQLite & SSE T
     expect(policies.some((p: any) => p.id === 'policy-exfil-001')).toBe(true);
   });
 
+  it('PUT /api/policies/:id dynamically updates policy in SQLite and in-memory interceptor', async () => {
+    const updatedPolicy = {
+      id: 'policy-fin-001',
+      name: 'Updated Financial Limit Guard',
+      version: 2,
+      actionPattern: 'payment.*',
+      requiredPrivilegeTier: 'executor' as const,
+      invariants: [
+        {
+          id: 'inv-max-auto-amount',
+          field: 'amount',
+          operator: 'lte' as const,
+          value: 200, // Reduced from 500 to 200
+          failureAction: 'require_approval' as const,
+          failureMessage: 'Transactions exceeding $200 require Dual-Signature approval',
+        },
+      ],
+    };
+
+    const putRes = await app.inject({
+      method: 'PUT',
+      url: '/api/policies/policy-fin-001',
+      payload: { policy: updatedPolicy },
+    });
+
+    expect(putRes.statusCode).toBe(200);
+    expect(putRes.json().status).toBe('updated');
+
+    // Test that a $250 payment is now held for review (was allowed previously under $500 limit)
+    const proposeRes = await app.inject({
+      method: 'POST',
+      url: '/api/interceptor/propose',
+      payload: {
+        request: {
+          id: 'test-updated-limit-250',
+          agentId: 'agent-fin-executor',
+          provenanceChain: [{ agentId: 'agent-fin-executor', tier: 'executor' }],
+          action: 'payment.execute',
+          payload: { amount: 250, currency: 'USD', recipient: 'Mid-Tier Vendor' },
+          createdAt: Date.now(),
+        },
+      },
+    });
+
+    expect(proposeRes.statusCode).toBe(200);
+    expect(proposeRes.json().status).toBe('pending_approval');
+  });
+
   it('POST /api/interceptor/propose allows routine payment (<$500)', async () => {
     const res = await app.inject({
       method: 'POST',

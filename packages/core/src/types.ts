@@ -46,9 +46,11 @@ export interface EvaluationResult {
   latencyMs: number;
 }
 
+export type AgentPrivilegeTier = 'untrusted_reader' | 'worker' | 'executor' | 'admin';
+
 export interface AgentProvenanceToken {
   agentId: string;
-  tier: 'untrusted_reader' | 'worker' | 'executor' | 'admin';
+  tier: AgentPrivilegeTier;
   delegatedBy?: string;
 }
 

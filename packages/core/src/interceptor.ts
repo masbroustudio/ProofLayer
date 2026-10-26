@@ -46,6 +46,13 @@ export class ProofLayerInterceptor {
     this.policies.set(policy.id, policy);
   }
 
+  public setPolicies(policies: PolicyAST[]): void {
+    this.policies.clear();
+    for (const policy of policies) {
+      this.policies.set(policy.id, policy);
+    }
+  }
+
   private matchPolicy(action: string): PolicyAST | undefined {
     for (const policy of this.policies.values()) {
       if (policy.actionPattern === '*' || policy.actionPattern === action) {

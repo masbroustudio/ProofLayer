@@ -104,6 +104,15 @@ export async function createServer(options: ServerOptions = {}): Promise<{
   app.get('/api/health', async () => ({ status: 'ok', timestamp: Date.now() }));
   app.get('/api/policies', async () => await repo.getPolicies());
   app.get('/api/requests', async () => await repo.getRecentRequests(30));
+  app.put<{ Params: { id: string }; Body: { policy: PolicyAST } }>(
+    '/api/policies/:id',
+    async (req, reply) => {
+      const { policy } = req.body;
+      await repo.upsertPolicy(policy);
+      interceptor.addPolicy(policy);
+      return reply.send({ status: 'updated', policy });
+    }
+  );
 
   // 2. Real-Time Telemetry SSE Stream
   app.get('/api/events', async (request, reply) => {

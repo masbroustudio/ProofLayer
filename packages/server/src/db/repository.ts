@@ -25,6 +25,28 @@ export class ProofLayerRepository {
     return JSON.parse(result.rows[0].compiled_ast as string);
   }
 
+  public async upsertPolicy(policy: PolicyAST): Promise<void> {
+    await this.client.execute({
+      sql: `
+        INSERT INTO policies (id, name, version, action_pattern, compiled_ast, status, created_at)
+        VALUES (?, ?, ?, ?, ?, 'active', ?)
+        ON CONFLICT(id) DO UPDATE SET
+          name = excluded.name,
+          version = excluded.version + 1,
+          action_pattern = excluded.action_pattern,
+          compiled_ast = excluded.compiled_ast;
+      `,
+      args: [
+        policy.id,
+        policy.name,
+        policy.version,
+        policy.actionPattern,
+        JSON.stringify(policy),
+        Date.now(),
+      ],
+    });
+  }
+
   public async insertExecutionRequest(req: ExecutionRequest, payloadHash: string, status: string): Promise<void> {
     await this.client.execute({
       sql: `

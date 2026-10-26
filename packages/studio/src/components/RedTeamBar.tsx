@@ -7,11 +7,13 @@ import {
   Crosshair,
   Database,
   Shield,
-  Layers
+  Layers,
+  Sparkles
 } from 'lucide-react';
 
 interface RedTeamBarProps {
   onSimulationTriggered: (scenario: string) => void;
+  onOpenCustomModal?: () => void;
 }
 
 export type SimulationScenario = 
@@ -22,7 +24,7 @@ export type SimulationScenario =
   | 'DATA_EXFILTRATION' 
   | 'CONTINUOUS_PIPELINE';
 
-export const RedTeamBar: React.FC<RedTeamBarProps> = ({ onSimulationTriggered }) => {
+export const RedTeamBar: React.FC<RedTeamBarProps> = ({ onSimulationTriggered, onOpenCustomModal }) => {
   const [loadingScenario, setLoadingScenario] = useState<string | null>(null);
 
   const handleSimulate = async (scenario: SimulationScenario) => {
@@ -143,6 +145,17 @@ export const RedTeamBar: React.FC<RedTeamBarProps> = ({ onSimulationTriggered })
           )}
           <span>Routine Pay ($50)</span>
         </button>
+
+        {/* Custom Proposal Trigger */}
+        {onOpenCustomModal && (
+          <button
+            onClick={onOpenCustomModal}
+            className="flex items-center gap-1.5 px-3 py-1 rounded-md bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-[11px] transition-all cursor-pointer hover:scale-[1.02] shadow-xs ml-1"
+          >
+            <Sparkles className="w-3 h-3 fill-white" />
+            <span>+ Custom Proposal</span>
+          </button>
+        )}
       </div>
     </div>
   );
