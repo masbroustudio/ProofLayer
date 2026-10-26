@@ -32,25 +32,26 @@ The recommended strategy is **Voiceover-After**:
 
 ## 3. Second-by-Second Click Path & Narration Script (Total: 2:55)
 
-### Scene 1 [0:00 – 0:25] The 2026 Crisis & Introduction
+### Scene 1 [0:00 – 0:25] The High-Stakes Visual Hook: Live Attack Intercepted in <0.05ms
 * **Screen**: ProofLayer Studio (`http://localhost:3000`), starting on the **Threat Console** tab in Stripe Light Theme.
 * **Mouse Actions**: 
-  - (0:00 - 0:10) Slowly hover cursor over the header: point to the `<0.05ms ($0 token cost)` benchmark pill and the active policies chip.
-  - (0:10 - 0:25) Move cursor across the Red-Team Sandbox action buttons and the Live Interceptor stream on the left.
+  - (0:00 - 0:05) Cursor starts at the top bar. Instantly click **`[🔥 Swarm Attack ($1,200)]`**!
+  - (0:05 - 0:15) Point cursor to the live console where the red **BLOCKED** status chip appears instantly, and hover over the `<0.05ms ($0 token cost)` benchmark pill.
+  - (0:15 - 0:25) Click the blocked event to show the animated **React Flow Evidence DAG** on the right, highlighting the failed policy check node.
 * **Voiceover Script**:
-  > *"Welcome to ProofLayer. In 2026, autonomous multi-agent swarms have direct access to financial tools, production databases, and cloud infrastructure. But relying on system prompts or slow, expensive LLM-as-a-judge guardrails is fundamentally flawed. When an agent is hijacked by indirect prompt injection or suffers parameter drift, the consequences are catastrophic. ProofLayer is the Trust Compiler and Zero-Trust Tool Proxy that replaces probabilistic hope with cryptographic certainty."*
+  > *"Watch this autonomous AI agent attempt an unauthorized $1,200 wire transfer. In under 0.05 milliseconds—with zero runtime LLM token cost—ProofLayer intercepts and hard-blocks the attack at the tool proxy boundary. In 2026, autonomous agent swarms have direct access to financial rails, databases, and cloud infrastructure. But relying on system prompts or slow, jailbreakable LLM guardrails is a disaster waiting to happen. ProofLayer replaces probabilistic hope with cryptographic certainty."*
 
 ---
 
-### Scene 2 [0:25 – 1:05] Live Swarm Interception & Custom Proposal Dispatcher
+### Scene 2 [0:25 – 1:05] Interactive Swarm Attack & Custom Proposal Dispatcher
 * **Screen**: Threat Console & Custom Proposal Modal.
 * **Mouse Actions**:
-  - (0:25 - 0:35) Click **`[🔥 Swarm Attack ($1,200)]`** on the top bar. Watch the red `BLOCKED` badge appear in the live console in `<0.05ms`.
-  - (0:35 - 0:45) Click **`[✨ + Custom Proposal]`** to open the custom workbench modal.
+  - (0:25 - 0:35) Click **`[🛡️ SQL Drop Guard]`** to show destructive `DROP TABLE` blocking. Watch the red alert appear in real time.
+  - (0:35 - 0:45) Click **`[✨ + Custom Proposal]`** to open the interactive Swarm Workbench modal.
   - (0:45 - 0:55) Click **`[Confused Deputy Attack Chain (3 Hops)]`** preset. Point cursor to the red **Tainted Chain Detected** banner (`agent-web-scraper` with tier `untrusted_reader`).
   - (0:55 - 1:05) Click **`[Dispatch Proposal to Gateway]`**. The modal closes, and the attack is caught live in the Evidence DAG.
 * **Voiceover Script**:
-  > *"Let's test an attack live. A web scraper subagent ingests a poisoned invoice and delegates an unauthorized $1,200 wire transfer through an executor agent. In under 0.05 milliseconds—with zero runtime LLM token cost—ProofLayer intercepts the call at the tool boundary. Our Custom Proposal Dispatcher allows engineers to simulate arbitrary multi-agent delegation trees. Because an untrusted reader initiated the chain, our Zero-Trust provenance engine hard-blocks the Confused Deputy attack before any money moves."*
+  > *"ProofLayer isn't just a static filter—it's an interactive security control plane. Here, a compromised agent attempts a destructive SQL DROP TABLE, and ProofLayer rejects it instantly. Next, our Custom Proposal Dispatcher allows engineers to simulate complex multi-agent delegation trees. When an untrusted web scraper subagent tries to delegate a privileged action through an executive agent, ProofLayer's Zero-Trust provenance engine traces the entire delegation lineage and shuts down the Confused Deputy attack before any damage occurs."*
 
 ---
 
