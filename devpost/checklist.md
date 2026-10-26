@@ -29,7 +29,7 @@ Build mode: learn
   Learner check: Open `http://localhost:3000` and confirm the dark telemetry dashboard renders with active connection status.
   Commit: `feat(studio): add dark telemetry dashboard with live interceptor console`
 
-- [ ] **3. Interactive React Flow Evidence DAG & Dual-Pane Inspector Drawer**
+- [x] **3. Interactive React Flow Evidence DAG & Dual-Pane Inspector Drawer**
   Becomes usable: The center/right panel renders a live directed acyclic graph (DAG) of execution lineage (`AGENT_INTENT` -> `POLICY_CHECK` -> `APPROVAL` -> `TOOL_EXECUTION`). Clicking any node slides open the Dual-Pane Drawer displaying raw canonical JSON and the Merkle proof tree.
   Why now: This is the core visual differentiator that fulfills the Devpost "Design" and "Innovation" criteria (25% each).
   PRD ref: `prd.md > Features and Behavior > 2. Interactive React Flow Evidence DAG & Dual-Pane Drawer`

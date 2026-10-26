@@ -1,1 +1,1 @@
-{"root":["./src/app.tsx","./src/main.tsx","./src/components/liveconsole.tsx","./src/components/topbar.tsx"],"version":"5.9.3"}
+{"root":["./src/app.tsx","./src/main.tsx","./src/components/dualpanedrawer.tsx","./src/components/evidencegraph.tsx","./src/components/evidencenodecomponent.tsx","./src/components/liveconsole.tsx","./src/components/topbar.tsx"],"version":"5.9.3"}
