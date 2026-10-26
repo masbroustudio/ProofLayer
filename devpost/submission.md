@@ -55,7 +55,7 @@ We engineered ProofLayer as a clean monorepo adhering strictly to the **Well-Arc
 * **Engine Core (`@prooflayer/core`)**: Pure TypeScript formal verification runtime. Implements the AST invariant evaluator, deterministic JSON canonicalization, SHA-256 payload hashing, HMAC-SHA256 signature verification, multi-agent provenance tree validation, and Merkle-linked audit nodes.
 * **Backend API & Gateway (`@prooflayer/server`)**: High-throughput Fastify server running on Node.js 22. Uses `@libsql/client` (Turso open source SQLite with Write-Ahead Logging) for lightweight, cross-platform persistence with zero native C++ build dependencies. Exposes REST endpoints for policy management, human approvals, and real-time SSE event streaming (`/api/events`).
 * **Frontend Operations Studio (`@prooflayer/studio`)**: Modern dark console built with Vite 6, React 19, and Tailwind CSS 4. Features `@xyflow/react` for interactive DAG visualization with custom styled nodes, dynamic SSE hooks, and multi-signature authorization modals.
-* **Testing & Quality Assurance**: 31 automated Vitest unit and integration tests verifying all 6 simulation scenarios, dynamic policy hot-reloading, crypto signatures, AST edge cases, and SQLite persistence in 3.4 seconds.
+* **Testing & Quality Assurance**: 82 automated Vitest tests (including a dedicated 51-test multi-agent adversarial stress and high-concurrency burst benchmark suite) verifying all simulation scenarios, deep 10-hop delegation spoofing, float drift, SQL/DLP edge cases, crypto signatures, and SQLite WAL persistence in 3.5 seconds.
 
 ---
 
@@ -70,7 +70,7 @@ We engineered ProofLayer as a clean monorepo adhering strictly to the **Well-Arc
 
 ## 5. Accomplishments That We're Proud Of
 
-* **100% Automated Test Pass Rate**: 31/31 Vitest tests executing across 6 test suites in ~3.4 seconds.
+* **100% Automated Test Pass Rate**: 82/82 Vitest tests executing across 7 test suites in ~3.5 seconds (including 51-test adversarial stress and high-concurrency burst benchmark).
 * **50,000× Latency Improvement**: Reduced tool safety evaluation latency from ~2,500ms (LLM-as-a-judge) to **<0.05ms**, with a **100% reduction in marginal evaluation costs ($0.00 token cost)**.
 * **Dual-Signature 4-Eyes Gate**: Implemented a realistic corporate governance gate requiring independent Finance and SecOps signatures before high-risk execution.
 * **Zero AI Slop / Zero Hallucination**: Every safety decision is mathematically and cryptographically provable.

@@ -51,7 +51,11 @@ export class ProofLayerRepository {
     await this.client.execute({
       sql: `
         INSERT INTO execution_requests (id, agent_id, action, payload, payload_hash, provenance_chain, status, created_at)
-        VALUES (?, ?, ?, ?, ?, ?, ?, ?);
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+        ON CONFLICT(id) DO UPDATE SET
+          status = excluded.status,
+          payload_hash = excluded.payload_hash,
+          payload = excluded.payload;
       `,
       args: [
         req.id,
@@ -115,7 +119,7 @@ export class ProofLayerRepository {
     const { approval, signature } = signedToken;
     await this.client.execute({
       sql: `
-        INSERT INTO approvals (id, request_id, payload_hash, reviewer_id, decision, nonce, signature, created_at)
+        INSERT OR REPLACE INTO approvals (id, request_id, payload_hash, reviewer_id, decision, nonce, signature, created_at)
         VALUES (?, ?, ?, ?, ?, ?, ?, ?);
       `,
       args: [
@@ -129,6 +133,15 @@ export class ProofLayerRepository {
         Date.now(),
       ],
     });
+  }
+
+  public async getApprovalByRequestId(requestId: string): Promise<any | null> {
+    const result = await this.client.execute({
+      sql: 'SELECT * FROM approvals WHERE request_id = ? ORDER BY created_at DESC LIMIT 1;',
+      args: [requestId],
+    });
+    if (result.rows.length === 0) return null;
+    return result.rows[0];
   }
 
   public async insertEvidenceNodes(nodes: EvidenceNode[]): Promise<void> {
@@ -173,7 +186,7 @@ export class ProofLayerRepository {
   public async insertToolExecution(requestId: string, toolName: string, outputResult: any): Promise<void> {
     await this.client.execute({
       sql: `
-        INSERT INTO tool_executions (id, request_id, tool_name, output_result, created_at)
+        INSERT OR REPLACE INTO tool_executions (id, request_id, tool_name, output_result, created_at)
         VALUES (?, ?, ?, ?, ?);
       `,
       args: [

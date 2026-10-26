@@ -9,6 +9,7 @@
   "scripts": {
     "test": "vitest run",
     "test:watch": "vitest",
+    "stress": "vitest run packages/server/tests/adversarial-stress.test.ts",
     "build": "npm --workspace=@prooflayer/studio run build",
     "server": "npm --workspace=@prooflayer/server run dev",
     "studio": "npm --workspace=@prooflayer/studio run dev",

@@ -1,7 +1,7 @@
 # ProofLayer
 
 [![Hackathon](https://img.shields.io/badge/Devpost-Build%20With%20AI%3A%20Basics-blue.svg)](https://learn-ai-basics.devpost.com/)
-[![Tests](https://img.shields.io/badge/Tests-31%2F31%20Passing-brightgreen.svg)](https://github.com/challengepost/learn-ai-basics)
+[![Tests](https://img.shields.io/badge/Tests-82%2F82%20Passing-brightgreen.svg)](https://github.com/challengepost/learn-ai-basics)
 [![Latency](https://img.shields.io/badge/Invariant%20Latency-%3C0.05ms-orange.svg)](#-pillar-3-innovation--idea-25)
 [![Token Cost](https://img.shields.io/badge/Runtime%20Cost-%240.00-brightgreen.svg)](#-pillar-3-innovation--idea-25)
 [![Compliance](https://img.shields.io/badge/Compliance-EU%20AI%20Act%20Art.%2014-purple.svg)](#-pillar-2-potential-impact-25)
@@ -141,16 +141,19 @@ ProofLayer uses `@libsql/client` (pure TypeScript/WebAssembly SQLite with WAL mo
 * **Node.js**: v20+ or v22+
 * **npm**: v10+
 
-### 1. Clone & Verify Test Suite (31/31 Tests Passing)
+### 1. Clone & Verify Test Suite (82/82 Tests Passing)
 ```bash
 git clone https://github.com/your-username/ProofLayer.git
 cd ProofLayer
 npm install
 
-# Run 31 automated Vitest unit & integration tests
+# Run all 82 automated Vitest unit, integration & stress tests
 npm test
+
+# Or run the dedicated 51-test multi-agent adversarial stress suite & benchmark
+npm run stress
 ```
-*All 31 unit & integration tests complete in ~3.4 seconds.*
+*All 82 unit, integration & stress tests complete in ~3.5 seconds.*
 
 ### 2. Launch Local Environment (Two-Terminal Split)
 

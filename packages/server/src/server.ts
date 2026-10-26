@@ -252,6 +252,8 @@ export async function createServer(options: ServerOptions = {}): Promise<{
       return reply.status(404).send({ error: 'RECEIPT_NOT_FOUND' });
     }
 
+    const approval = await repo.getApprovalByRequestId(req.params.requestId);
+
     const receipt = generateTrustReceipt({
       requestId: request.id,
       action: request.action,
@@ -259,6 +261,7 @@ export async function createServer(options: ServerOptions = {}): Promise<{
       verdict: request.status === 'executed' ? 'VERIFIED_EXECUTION' : 'PREVENTED_VIOLATION',
       payloadHash: request.payloadHash,
       nodes,
+      approvalSignature: approval?.signature as string | undefined,
     });
 
     return reply.send(receipt);
