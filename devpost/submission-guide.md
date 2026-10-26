@@ -11,11 +11,17 @@ Use this comprehensive guide to rehearse and record your **3-minute video pitch*
 - **Tagline**: *Don't trust what AI claims. Cryptographically verify what AI does.*
 - **Devpost Track**: Developer Infrastructure & Agentic AI Safety (2026 Track)
 - **Primary Design Aesthetic**: Stripe / Apple Developer High-Precision Light Theme (`#F8FAFC` foundation, pure white cards, crisp `#E2E8F0` borders, and vibrant `#4F46E5` sapphire/indigo branding)
-- **Verification Guarantee**: 31/31 automated Vitest tests passing with 100% success across all packages.
+- **Verification Guarantee**: 82/82 automated Vitest tests passing with 100% success across all packages (including 51-test adversarial stress & burst suite).
 
 ---
 
 ## 2. Video Pitch Recording Setup (Voiceover-After Approach)
+
+### Quickstart Dev Stack
+```bash
+# Launch both backend (3001) and frontend (3000) with a single command
+npm run dev
+```
 
 The recommended strategy is **Voiceover-After**:
 1. **Step 1 (Silent Video Capture)**: Follow the **Second-by-Second Click Path** below while recording your screen silently (using Windows Snipping Tool, OBS, or Clipchamp at 1080p full screen). Make your mouse movements deliberate and steady.

@@ -155,19 +155,15 @@ npm run stress
 ```
 *All 82 unit, integration & stress tests complete in ~3.5 seconds.*
 
-### 2. Launch Local Environment (Two-Terminal Split)
+### 2. Launch Local Environment (Single Command)
 
-**Terminal 1 — Fastify Backend & SSE Telemetry (Port 3001)**:
 ```bash
-npm run server
+# Launch both Backend Gateway (Port 3001) and Studio UI (Port 3000) simultaneously
+npm run dev
 ```
-*Server initializes SQLite WAL tables, seeds policies, and listens on `http://localhost:3001`.*
+*Spawns both the Fastify Gateway (`http://localhost:3001`) and the ProofLayer Studio (`http://localhost:3000`) concurrently with unified telemetry and graceful shutdown.*
 
-**Terminal 2 — ProofLayer Studio Frontend (Port 3000)**:
-```bash
-npm run studio
-```
-*Vite compiles the React 19 dashboard and opens on `http://localhost:3000`.*
+*(Alternatively, run in two separate split terminals: `npm run server` and `npm run studio`)*
 
 ### 3. Experience the Live Demo
 1. Open **`http://localhost:3000`** in your browser.
