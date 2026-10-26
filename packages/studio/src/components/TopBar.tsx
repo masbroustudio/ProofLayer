@@ -122,11 +122,11 @@ export const TopBar: React.FC<TopBarProps> = ({
 
         {/* Connection Status */}
         <div 
-          title={connected ? "Connected to Real-Time SSE Gateway" : "Reconnecting to Gateway"}
+          title={connected ? "Connected to Real-Time SSE Gateway" : "Running in Zero-Trust Demo Sandbox"}
           className="hidden md:flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-slate-50 border border-slate-200 text-[11px] font-medium text-slate-700"
         >
-          <span className={`w-2 h-2 rounded-full ${connected ? 'bg-emerald-500 animate-pulse' : 'bg-rose-500'}`} />
-          <span>{connected ? 'MCP Proxy Live' : 'Reconnecting...'}</span>
+          <span className={`w-2 h-2 rounded-full ${connected ? 'bg-emerald-500 animate-pulse' : 'bg-emerald-500'}`} />
+          <span>{connected ? 'MCP Proxy Live' : 'Sandbox Active'}</span>
         </div>
 
         {/* Demo Project Pill Badge (from Senior Mockup) */}
