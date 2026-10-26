@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { TopBar, type StudioTab } from './components/TopBar.js';
 import { RedTeamBar } from './components/RedTeamBar.js';
+import { ExecutiveOverview } from './components/ExecutiveOverview.js';
 import { LiveConsole, type InterceptedItem } from './components/LiveConsole.js';
 import { EvidenceGraph } from './components/EvidenceGraph.js';
 import { DualPaneDrawer } from './components/DualPaneDrawer.js';
@@ -12,7 +13,7 @@ import { CustomProposalModal } from './components/CustomProposalModal.js';
 import { Network, Terminal, FileCheck2, UserCheck } from 'lucide-react';
 
 export const App: React.FC = () => {
-  const [activeTab, setActiveTab] = useState<StudioTab>('console');
+  const [activeTab, setActiveTab] = useState<StudioTab>('overview');
   const [connected, setConnected] = useState<boolean>(false);
   const [policyCount, setPolicyCount] = useState<number>(4);
   const [items, setItems] = useState<InterceptedItem[]>([]);
@@ -136,16 +137,26 @@ export const App: React.FC = () => {
         onTabChange={setActiveTab} 
       />
 
-      {/* Red-Team Adversarial Sandbox Runner (Persistent Header across tabs) */}
-      <RedTeamBar 
-        onSimulationTriggered={() => {
-          setInspectedNode(null);
-          if (activeTab !== 'console') {
-            setActiveTab('console');
-          }
-        }} 
-        onOpenCustomModal={() => setShowCustomModal(true)}
-      />
+      {/* Red-Team Adversarial Sandbox Runner (Active on Console View) */}
+      {activeTab === 'console' && (
+        <RedTeamBar 
+          onSimulationTriggered={() => {
+            setInspectedNode(null);
+            if (activeTab !== 'console') {
+              setActiveTab('console');
+            }
+          }} 
+          onOpenCustomModal={() => setShowCustomModal(true)}
+        />
+      )}
+
+      {/* Tab 0: Executive Overview (Senior's Safe Payment Flow Architecture) */}
+      {activeTab === 'overview' && (
+        <ExecutiveOverview 
+          onNavigateTab={setActiveTab} 
+          recentItems={items} 
+        />
+      )}
 
       {/* Tab 1: Live Threat Console View */}
       {activeTab === 'console' && (
