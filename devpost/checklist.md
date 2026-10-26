@@ -74,7 +74,7 @@ Build mode: learn
 - [x] Optional edit and transfer reflection addressed — offered/declined/already covered/not applicable as appropriate
 - [x] `devpost/app-map.html` generated from finished code, checked, and shown, including a project-grounded practice to reuse
 
-Activity and evidence: Verified all 5 slices with 30/30 automated Vitest tests passing; implemented Fastify SSE server with @libsql/client, React 19 Studio with React Flow DAG, and 6 one-click adversarial simulations (Continuous 5-Step Pipeline, Swarm Attack, SQL Drop Guard, Exfiltration Blocker, TOCTOU Tamper, Routine Payment).
+Activity and evidence: Verified all 5 slices with 82/82 automated Vitest tests passing across 7 suites; implemented Fastify SSE server with @libsql/client, React 19 Studio with React Flow DAG, single-command unified dev stack (npm run dev), and 6 one-click adversarial simulations (Continuous 5-Step Pipeline, Swarm Attack, SQL Drop Guard, Exfiltration Blocker, TOCTOU Tamper, Routine Payment).
 Route and stops: packages/core/src/evaluator.ts -> packages/server/src/server.ts -> packages/studio/src/components/EvidenceGraph.tsx
 Edit outcome: not applicable (clean build, verified without regressive edits)
 Reflection: TDD security invariants practiced and recorded

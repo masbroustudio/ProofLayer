@@ -2,6 +2,7 @@
 
 [![Hackathon](https://img.shields.io/badge/Devpost-Build%20With%20AI%3A%20Basics-blue.svg)](https://learn-ai-basics.devpost.com/)
 [![Tests](https://img.shields.io/badge/Tests-82%2F82%20Passing-brightgreen.svg)](https://github.com/challengepost/learn-ai-basics)
+[![CI](https://github.com/challengepost/learn-ai-basics/actions/workflows/ci.yml/badge.svg)](https://github.com/challengepost/learn-ai-basics)
 [![Latency](https://img.shields.io/badge/Invariant%20Latency-%3C0.05ms-orange.svg)](#-pillar-3-innovation--idea-25)
 [![Token Cost](https://img.shields.io/badge/Runtime%20Cost-%240.00-brightgreen.svg)](#-pillar-3-innovation--idea-25)
 [![Compliance](https://img.shields.io/badge/Compliance-EU%20AI%20Act%20Art.%2014-purple.svg)](#-pillar-2-potential-impact-25)
