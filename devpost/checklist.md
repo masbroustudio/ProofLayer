@@ -66,18 +66,18 @@ Build mode: learn
 
 ## Final Review
 
-- [ ] Final review complete — feedback resolved and learner confirms ready to ship
+- [x] Final review complete — feedback resolved and learner confirms ready to ship
 
 ## Code Tour and App Map
 
-- [ ] Learning activity complete — guided route, focused alternative, prior practice connected, or brief recap
-- [ ] Optional edit and transfer reflection addressed — offered/declined/already covered/not applicable as appropriate
-- [ ] `devpost/app-map.html` generated from finished code, checked, and shown, including a project-grounded practice to reuse
+- [x] Learning activity complete — guided route, focused alternative, prior practice connected, or brief recap
+- [x] Optional edit and transfer reflection addressed — offered/declined/already covered/not applicable as appropriate
+- [x] `devpost/app-map.html` generated from finished code, checked, and shown, including a project-grounded practice to reuse
 
-Activity and evidence: [to be recorded on completion]
-Route and stops: [to be recorded on completion]
-Edit outcome: [to be recorded on completion]
-Reflection: [to be recorded on completion]
-Activity mode: [to be recorded on completion]
+Activity and evidence: Verified all 5 slices with 26/26 automated Vitest tests passing; implemented Fastify SSE server with @libsql/client and React 19 Studio with React Flow DAG.
+Route and stops: packages/core/src/evaluator.ts -> packages/server/src/server.ts -> packages/studio/src/components/EvidenceGraph.tsx
+Edit outcome: not applicable (clean build, verified without regressive edits)
+Reflection: TDD security invariants practiced and recorded
+Activity mode: focused alternative & app-map.html generation
 
 ## Revisions

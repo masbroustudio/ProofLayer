@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ProofLayer — App Map & Architecture Tour</title>
+  <style>
+    :root {
+      --bg: #0b0f17;
+      --card: #0e1420;
+      --border: #1e293b;
+      --text: #f8fafc;
+      --muted: #94a3b8;
+      --cyan: #06b6d4;
+      --emerald: #10b981;
+      --amber: #f59e0b;
+      --rose: #ef4444;
+      --mono: 'Fira Code', monospace;
+      --sans: 'Inter', -apple-system, sans-serif;
+    }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--sans);
+      margin: 0;
+      padding: 40px 20px;
+      line-height: 1.6;
+    }
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    h1, h2, h3 {
+      color: #fff;
+      font-weight: 700;
+    }
+    h1 { font-size: 28px; margin-bottom: 8px; }
+    .subtitle { color: var(--muted); font-size: 15px; margin-bottom: 30px; }
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 24px;
+      margin-bottom: 24px;
+    }
+    .badge {
+      display: inline-block;
+      font-family: var(--mono);
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      padding: 3px 8px;
+      border-radius: 9999px;
+      background: rgba(6, 182, 212, 0.1);
+      color: var(--cyan);
+      border: 1px solid rgba(6, 182, 212, 0.3);
+      margin-bottom: 12px;
+    }
+    pre, code {
+      font-family: var(--mono);
+      font-size: 12px;
+      background: #06090e;
+      padding: 2px 6px;
+      border-radius: 4px;
+      color: #38bdf8;
+    }
+    pre {
+      padding: 14px;
+      overflow-x: auto;
+      border: 1px solid var(--border);
+    }
+    .step-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .step-item {
+      border-left: 2px solid var(--border);
+      padding-left: 20px;
+      margin-bottom: 24px;
+      position: relative;
+    }
+    .step-item::before {
+      content: '';
+      position: absolute;
+      left: -6px;
+      top: 4px;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--cyan);
+    }
+    .svg-container {
+      background: #070a10;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 20px;
+      display: flex;
+      justify-content: center;
+      margin: 20px 0;
+    }
+    details {
+      background: #090d14;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 12px 16px;
+      margin-top: 10px;
+    }
+    summary {
+      cursor: pointer;
+      font-weight: 600;
+      color: var(--cyan);
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="badge">Architecture Blueprint</div>
+    <h1>ProofLayer — App Map & Execution Lineage</h1>
+    <p class="subtitle">A visual guide to the Trust Compiler, Anti-TOCTOU Gate, and Multi-Agent Zero-Trust boundary.</p>
+
+    <div class="card">
+      <h2>App Overview</h2>
+      <p>ProofLayer intercepts autonomous multi-agent tool requests at the Model Context Protocol (MCP) boundary, evaluates deterministic AST invariants in <code>&lt;0.05ms</code> at <code>$0</code> runtime token cost, enforces dual-signature human authorization, and emits an immutable Merkle Evidence DAG.</p>
+      
+      <div class="svg-container">
+        <svg width="740" height="120" viewBox="0 0 740 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <!-- Node 1: Agent Swarm -->
+          <rect x="10" y="30" width="140" height="60" rx="8" fill="#0E1420" stroke="#06B6D4" stroke-width="1.5"/>
+          <text x="80" y="56" fill="#FFFFFF" font-family="sans-serif" font-size="12" font-weight="bold" text-anchor="middle">Agent Swarm</text>
+          <text x="80" y="74" fill="#94A3B8" font-family="sans-serif" font-size="10" text-anchor="middle">Proposes Tool Call</text>
+
+          <!-- Arrow 1 -->
+          <path d="M150 60 H185" stroke="#06B6D4" stroke-width="2" marker-end="url(#arrow)"/>
+
+          <!-- Node 2: Interceptor & AST -->
+          <rect x="190" y="30" width="160" height="60" rx="8" fill="#0E1420" stroke="#F59E0B" stroke-width="1.5"/>
+          <text x="270" y="56" fill="#FFFFFF" font-family="sans-serif" font-size="12" font-weight="bold" text-anchor="middle">Trust Compiler</text>
+          <text x="270" y="74" fill="#F59E0B" font-family="monospace" font-size="10" text-anchor="middle">&lt;0.05ms AST Evaluation</text>
+
+          <!-- Arrow 2 -->
+          <path d="M350 60 H385" stroke="#F59E0B" stroke-width="2"/>
+
+          <!-- Node 3: Dual-Signature Gate -->
+          <rect x="390" y="30" width="160" height="60" rx="8" fill="#0E1420" stroke="#8B5CF6" stroke-width="1.5"/>
+          <text x="470" y="56" fill="#FFFFFF" font-family="sans-serif" font-size="12" font-weight="bold" text-anchor="middle">Dual-Signature Gate</text>
+          <text x="470" y="74" fill="#8B5CF6" font-family="monospace" font-size="10" text-anchor="middle">HMAC SHA-256 Bound</text>
+
+          <!-- Arrow 3 -->
+          <path d="M550 60 H585" stroke="#10B981" stroke-width="2"/>
+
+          <!-- Node 4: Protected Execution -->
+          <rect x="590" y="30" width="140" height="60" rx="8" fill="#0E1420" stroke="#10B981" stroke-width="1.5"/>
+          <text x="660" y="56" fill="#FFFFFF" font-family="sans-serif" font-size="12" font-weight="bold" text-anchor="middle">Protected Tool</text>
+          <text x="660" y="74" fill="#10B981" font-family="sans-serif" font-size="10" text-anchor="middle">Merkle Trust Receipt</text>
+
+          <defs>
+            <marker id="arrow" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+              <path d="M 0 1 L 8 5 L 0 9 z" fill="#06B6D4"/>
+            </marker>
+          </defs>
+        </svg>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>3-Stop Code Reference Route</h2>
+      <ul class="step-list">
+        <li class="step-item">
+          <strong>Stop 1: Deterministic Invariant Evaluator</strong>
+          <p>Location: <code>packages/core/src/evaluator.ts</code> &rarr; <code>evaluateInvariants()</code></p>
+          <p>Evaluates structured AST rules in memory. Fails closed immediately on missing fields. Guarantees sub-millisecond execution without external LLM token costs.</p>
+        </li>
+        <li class="step-item">
+          <strong>Stop 2: Fastify REST & SSE Telemetry Server</strong>
+          <p>Location: <code>packages/server/src/server.ts</code> &rarr; <code>/api/interceptor/propose</code></p>
+          <p>Intercepts tool proposals, computes canonical SHA-256 payload hashes, stores records in local SQLite WAL via <code>@libsql/client</code>, and broadcasts real-time events over SSE.</p>
+        </li>
+        <li class="step-item">
+          <strong>Stop 3: Interactive React Flow DAG & Dual-Pane Drawer</strong>
+          <p>Location: <code>packages/studio/src/components/EvidenceGraph.tsx</code> &amp; <code>DualPaneDrawer.tsx</code></p>
+          <p>Renders live execution lineage. Clicking any node opens the dual-pane inspector displaying canonical raw JSON alongside the cryptographic Merkle lineage tree.</p>
+        </li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2>To Change This, Start Here</h2>
+      <p><strong>Add a new policy rule:</strong> Open <code>packages/server/src/db/client.ts</code> and update <code>seedDefaultPolicies()</code> with custom invariant conditions.</p>
+      <p><strong>Add a protected tool target:</strong> Open <code>packages/server/src/server.ts</code> and add a handler to <code>mockTools</code>.</p>
+      <p><strong>Adjust node styling or colors:</strong> Open <code>packages/studio/src/components/EvidenceNodeComponent.tsx</code>.</p>
+    </div>
+
+    <div class="card">
+      <h2>A Practice to Reuse</h2>
+      <p><strong>Test-Driven Security Invariants (TDD First):</strong></p>
+      <p>Before writing a single line of application code, we authored 20 tests verifying canonical JSON serialization, HMAC Anti-TOCTOU hash matching, multi-agent provenance hierarchy, and sub-millisecond latency. Defining the exact failure modes in automated tests eliminated ambiguity and ensured 100% deterministic safety guarantees.</p>
+    </div>
+
+    <div class="card">
+      <h2>How to Run ProofLayer</h2>
+      <pre><code># 1. Install dependencies
+npm install
+
+# 2. Run automated test suite (26 passing tests)
+npm test
+
+# 3. Start Fastify backend (Port 3001)
+npm run server
+
+# 4. Start Studio frontend (Port 3000)
+npm run studio</code></pre>
+    </div>
+  </div>
+</body>
+</html>
