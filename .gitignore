@@ -10,5 +10,7 @@ coverage/
 *.sqlite-shm
 *.tsbuildinfo
 /devpost/learner-profile.md
+Draft Project Brief ProofLayer.md
+DEVPOST_SUBMISSION_FINAL.md
 .claude/
 agent/
