@@ -19,7 +19,7 @@ Build mode: learn
   Learner check: Start the server and confirm `http://localhost:3001/api/policies` returns the active high-value payment and swarm guard policies.
   Commit: `feat(server): initialize Fastify backend with libsql SQLite persistence and SSE stream`
 
-- [ ] **2. ProofLayer Studio frontend scaffold with Live Interceptor Console**
+- [x] **2. ProofLayer Studio frontend scaffold with Live Interceptor Console**
   Becomes usable: A running dark-mode developer console at `http://localhost:3000` connected to the backend via SSE, displaying system telemetry, latency counter, active policies, and live intercepted tool calls.
   Why now: Proves the end-to-end frontend-to-backend telemetry pipeline early, so all subsequent security features have an immediate visual surface.
   PRD ref: `prd.md > Screens and Layout`, `prd.md > Look and Feel`
@@ -61,7 +61,7 @@ Build mode: learn
 
 ## Hands-on Checkpoints
 
-- [ ] Early usable behavior explored — Slice 2 (Live console receiving real-time SSE tool calls)
+- [x] Early usable behavior explored — Slice 2 (Live console receiving real-time SSE tool calls)
 - [ ] Final kick-the-tires exploration and feedback completed — Slice 5 (Complete Red-Team attack demo working end-to-end)
 
 ## Final Review
