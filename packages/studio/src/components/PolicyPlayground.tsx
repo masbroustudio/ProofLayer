@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { 
   Sliders, 
   Code2, 
@@ -145,6 +145,22 @@ export const PolicyPlayground: React.FC = () => {
   const [evalLatencyMs, setEvalLatencyMs] = useState<number | null>(null);
   const [deploying, setDeploying] = useState<boolean>(false);
   const [deploySuccess, setDeploySuccess] = useState<boolean>(false);
+
+  // Synchronize with live SQLite policies from gateway
+  useEffect(() => {
+    fetch('/api/policies')
+      .then((res) => res.json())
+      .then((policies: PolicyAST[]) => {
+        if (Array.isArray(policies) && policies.length > 0) {
+          const current = policies.find((p) => p.id === selectedPolicyKey);
+          if (current) {
+            setActivePolicy(current);
+            setRawPolicyJson(JSON.stringify(current, null, 2));
+          }
+        }
+      })
+      .catch(() => {});
+  }, [selectedPolicyKey]);
 
   // Switch preset policy
   const handleSelectPolicy = (key: string) => {

@@ -68,6 +68,10 @@ export class ProofLayerInterceptor {
     return undefined;
   }
 
+  public getPolicyForAction(action: string): PolicyAST | undefined {
+    return this.matchPolicy(action);
+  }
+
   /**
    * Intercepts, verifies, and executes a protected tool call within deterministic safety boundaries.
    */

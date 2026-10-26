@@ -185,6 +185,7 @@ export const App: React.FC = () => {
                 <div className="flex-1 w-full h-full relative">
                   <EvidenceGraph 
                     requestId={selectedItem.id} 
+                    status={selectedItem.status}
                     onSelectNode={setInspectedNode} 
                   />
                 </div>

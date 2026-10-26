@@ -253,11 +253,13 @@ export async function createServer(options: ServerOptions = {}): Promise<{
     }
 
     const approval = await repo.getApprovalByRequestId(req.params.requestId);
+    const matchedPolicy = interceptor.getPolicyForAction(request.action);
+    const policyId = matchedPolicy ? matchedPolicy.id : 'policy-default-001';
 
     const receipt = generateTrustReceipt({
       requestId: request.id,
       action: request.action,
-      policyId: 'policy-fin-001',
+      policyId,
       verdict: request.status === 'executed' ? 'VERIFIED_EXECUTION' : 'PREVENTED_VIOLATION',
       payloadHash: request.payloadHash,
       nodes,

@@ -14,10 +14,11 @@ import { Network, RefreshCw } from 'lucide-react';
 
 interface EvidenceGraphProps {
   requestId: string | null;
+  status?: string;
   onSelectNode: (node: any) => void;
 }
 
-export const EvidenceGraph: React.FC<EvidenceGraphProps> = ({ requestId, onSelectNode }) => {
+export const EvidenceGraph: React.FC<EvidenceGraphProps> = ({ requestId, status, onSelectNode }) => {
   const [nodes, setNodes] = useState<Node[]>([]);
   const [edges, setEdges] = useState<Edge[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
@@ -70,7 +71,7 @@ export const EvidenceGraph: React.FC<EvidenceGraphProps> = ({ requestId, onSelec
         setEdges([]);
       })
       .finally(() => setLoading(false));
-  }, [requestId]);
+  }, [requestId, status]);
 
   const handleNodeClick = (_event: React.MouseEvent, node: Node) => {
     onSelectNode(node.data);

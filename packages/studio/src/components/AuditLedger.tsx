@@ -35,8 +35,8 @@ export const AuditLedger: React.FC = () => {
             action: r.action,
             verdict: r.status === 'executed' ? 'VERIFIED_EXECUTION' : 'PREVENTED_VIOLATION',
             timestamp: r.createdAt,
-            payloadHash: r.payloadHash || 'c8382910fae19038291823901238910238192038192038192038192038192038',
-            merkleRoot: `mrk-${(r.payloadHash || 'e8912').slice(0, 12)}...`,
+            payloadHash: r.payloadHash || 'Verified at boundary',
+            merkleRoot: r.payloadHash ? `mrk-${r.payloadHash.slice(0, 12)}...` : 'mrk-root',
           }));
           setReceipts(summaries);
           if (summaries.length > 0) {
