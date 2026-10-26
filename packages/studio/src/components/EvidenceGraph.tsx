@@ -54,10 +54,10 @@ export const EvidenceGraph: React.FC<EvidenceGraphProps> = ({ requestId, onSelec
             source: e.source,
             target: e.target,
             animated: true,
-            style: { stroke: '#06B6D4', strokeWidth: 2 },
+            style: { stroke: '#4F46E5', strokeWidth: 2 },
             markerEnd: {
               type: MarkerType.ArrowClosed,
-              color: '#06B6D4',
+              color: '#4F46E5',
             },
           }));
 
@@ -77,17 +77,17 @@ export const EvidenceGraph: React.FC<EvidenceGraphProps> = ({ requestId, onSelec
   };
 
   return (
-    <div className="w-full h-full relative bg-[#0B0F17]">
+    <div className="w-full h-full relative bg-slate-50/60">
       {loading ? (
-        <div className="absolute inset-0 flex items-center justify-center bg-[#0B0F17]/80 z-10 text-cyan-400 text-xs">
+        <div className="absolute inset-0 flex items-center justify-center bg-white/70 backdrop-blur-xs z-10 text-indigo-600 text-xs">
           <RefreshCw className="w-5 h-5 animate-spin mr-2" />
-          <span>Rendering cryptographic evidence DAG...</span>
+          <span className="font-semibold">Rendering cryptographic evidence DAG...</span>
         </div>
       ) : nodes.length === 0 ? (
-        <div className="absolute inset-0 flex flex-col items-center justify-center text-slate-500 text-xs text-center p-6">
-          <Network className="w-10 h-10 mb-2 opacity-30 text-cyan-500" />
-          <p>No evidence DAG recorded for this request yet.</p>
-          <p className="text-[11px] text-slate-600 mt-1">Actions evaluated by ProofLayer produce immutable nodes here.</p>
+        <div className="absolute inset-0 flex flex-col items-center justify-center text-slate-400 text-xs text-center p-6">
+          <Network className="w-10 h-10 mb-2 opacity-40 text-indigo-500" />
+          <p className="font-medium text-slate-600">No evidence DAG recorded for this request yet.</p>
+          <p className="text-[11px] text-slate-400 mt-1">Actions evaluated by ProofLayer produce immutable nodes here.</p>
         </div>
       ) : null}
 
@@ -97,14 +97,14 @@ export const EvidenceGraph: React.FC<EvidenceGraphProps> = ({ requestId, onSelec
         nodeTypes={nodeTypes}
         onNodeClick={handleNodeClick}
         fitView
-        className="bg-[#0B0F17]"
+        className="bg-slate-50/60"
       >
-        <Background color="#1E293B" gap={20} size={1} />
-        <Controls className="bg-slate-900 border border-slate-800 text-slate-300 rounded-lg overflow-hidden shadow-lg" />
-        <MiniMap 
-          nodeColor="#06B6D4" 
-          maskColor="rgba(11, 15, 23, 0.8)" 
-          className="bg-slate-950 border border-slate-800 rounded-lg"
+        <Background gap={18} size={1} color="#CBD5E1" />
+        <Controls className="bg-white border border-slate-200 rounded-lg shadow-xs" />
+        <MiniMap
+          nodeStrokeColor="#4F46E5"
+          nodeColor="#FFFFFF"
+          className="bg-white border border-slate-200 rounded-lg shadow-xs"
         />
       </ReactFlow>
     </div>

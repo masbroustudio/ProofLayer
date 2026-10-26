@@ -43,15 +43,15 @@ export const RedTeamBar: React.FC<RedTeamBarProps> = ({ onSimulationTriggered })
   };
 
   return (
-    <div className="h-11 border-b border-slate-800 bg-[#0A0E17] px-4 flex items-center justify-between text-xs font-mono z-10 shrink-0 overflow-x-auto">
+    <div className="h-11 border-b border-slate-200 bg-white px-4 sm:px-6 flex items-center justify-between text-xs font-mono z-10 shrink-0 overflow-x-auto shadow-2xs">
       {/* Title */}
       <div className="flex items-center gap-2 shrink-0 mr-3">
-        <Crosshair className="w-4 h-4 text-rose-400" />
-        <span className="font-bold text-slate-300 uppercase tracking-wider text-[11px]">
+        <Crosshair className="w-3.5 h-3.5 text-rose-500" />
+        <span className="font-bold text-slate-800 uppercase tracking-wider text-[11px]">
           Red-Team Sandbox
         </span>
-        <span className="text-[10px] text-slate-500 font-sans hidden xl:inline">
-          — One-click adversarial scenarios for 3-minute video pitch
+        <span className="text-[10px] text-slate-400 font-sans hidden xl:inline">
+          — One-click adversarial scenarios for video demo
         </span>
       </div>
 
@@ -62,12 +62,12 @@ export const RedTeamBar: React.FC<RedTeamBarProps> = ({ onSimulationTriggered })
           onClick={() => handleSimulate('CONTINUOUS_PIPELINE')}
           disabled={loadingScenario !== null}
           title="Run complete 5-step agentic workflow: Invoice -> DB Query -> Pay -> Attack Intercept -> Exfil Block"
-          className="flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-cyan-950/80 hover:bg-cyan-900/90 text-cyan-300 border border-cyan-800/80 font-bold text-[11px] transition-all hover:scale-[1.02] shadow-sm shadow-cyan-950"
+          className="flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-indigo-50 hover:bg-indigo-100 text-indigo-700 border border-indigo-200 font-bold text-[11px] transition-all cursor-pointer hover:scale-[1.01] shadow-2xs"
         >
           {loadingScenario === 'CONTINUOUS_PIPELINE' ? (
-            <RefreshCw className="w-3.5 h-3.5 animate-spin text-cyan-400" />
+            <RefreshCw className="w-3 h-3 animate-spin text-indigo-600" />
           ) : (
-            <Layers className="w-3.5 h-3.5 text-cyan-400" />
+            <Layers className="w-3 h-3 text-indigo-600" />
           )}
           <span>5-Step Pipeline</span>
         </button>
@@ -76,12 +76,12 @@ export const RedTeamBar: React.FC<RedTeamBarProps> = ({ onSimulationTriggered })
         <button
           onClick={() => handleSimulate('SWARM_ATTACK')}
           disabled={loadingScenario !== null}
-          className="flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-rose-950/80 hover:bg-rose-900/90 text-rose-300 border border-rose-800/80 font-bold text-[11px] transition-all hover:scale-[1.02] shadow-sm shadow-rose-950"
+          className="flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-rose-50 hover:bg-rose-100 text-rose-700 border border-rose-200 font-bold text-[11px] transition-all cursor-pointer hover:scale-[1.01] shadow-2xs"
         >
           {loadingScenario === 'SWARM_ATTACK' ? (
-            <RefreshCw className="w-3.5 h-3.5 animate-spin text-rose-400" />
+            <RefreshCw className="w-3 h-3 animate-spin text-rose-600" />
           ) : (
-            <Flame className="w-3.5 h-3.5 text-rose-400" />
+            <Flame className="w-3 h-3 text-rose-600" />
           )}
           <span>Swarm Attack ($1,200)</span>
         </button>
@@ -91,12 +91,12 @@ export const RedTeamBar: React.FC<RedTeamBarProps> = ({ onSimulationTriggered })
           onClick={() => handleSimulate('SQL_DROP_GUARD')}
           disabled={loadingScenario !== null}
           title="Simulate compromised SRE agent attempting DROP TABLE customers_prod CASCADE"
-          className="flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-orange-950/80 hover:bg-orange-900/90 text-orange-300 border border-orange-800/80 font-bold text-[11px] transition-all hover:scale-[1.02] shadow-sm shadow-orange-950"
+          className="flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-orange-50 hover:bg-orange-100 text-orange-700 border border-orange-200 font-bold text-[11px] transition-all cursor-pointer hover:scale-[1.01] shadow-2xs"
         >
           {loadingScenario === 'SQL_DROP_GUARD' ? (
-            <RefreshCw className="w-3.5 h-3.5 animate-spin text-orange-400" />
+            <RefreshCw className="w-3 h-3 animate-spin text-orange-600" />
           ) : (
-            <Database className="w-3.5 h-3.5 text-orange-400" />
+            <Database className="w-3 h-3 text-orange-600" />
           )}
           <span>SQL Drop Guard</span>
         </button>
@@ -106,12 +106,12 @@ export const RedTeamBar: React.FC<RedTeamBarProps> = ({ onSimulationTriggered })
           onClick={() => handleSimulate('DATA_EXFILTRATION')}
           disabled={loadingScenario !== null}
           title="Simulate untrusted agent leaking customer SSN and OpenAI API key"
-          className="flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-purple-950/80 hover:bg-purple-900/90 text-purple-300 border border-purple-800/80 font-bold text-[11px] transition-all hover:scale-[1.02] shadow-sm shadow-purple-950"
+          className="flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-purple-50 hover:bg-purple-100 text-purple-700 border border-purple-200 font-bold text-[11px] transition-all cursor-pointer hover:scale-[1.01] shadow-2xs"
         >
           {loadingScenario === 'DATA_EXFILTRATION' ? (
-            <RefreshCw className="w-3.5 h-3.5 animate-spin text-purple-400" />
+            <RefreshCw className="w-3 h-3 animate-spin text-purple-600" />
           ) : (
-            <Shield className="w-3.5 h-3.5 text-purple-400" />
+            <Shield className="w-3 h-3 text-purple-600" />
           )}
           <span>Exfiltration Blocker</span>
         </button>
@@ -120,12 +120,12 @@ export const RedTeamBar: React.FC<RedTeamBarProps> = ({ onSimulationTriggered })
         <button
           onClick={() => handleSimulate('TOCTOU_TAMPER')}
           disabled={loadingScenario !== null}
-          className="flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-amber-950/80 hover:bg-amber-900/90 text-amber-300 border border-amber-800/80 font-bold text-[11px] transition-all hover:scale-[1.02] shadow-sm shadow-amber-950"
+          className="flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-amber-50 hover:bg-amber-100 text-amber-800 border border-amber-200 font-bold text-[11px] transition-all cursor-pointer hover:scale-[1.01] shadow-2xs"
         >
           {loadingScenario === 'TOCTOU_TAMPER' ? (
-            <RefreshCw className="w-3.5 h-3.5 animate-spin text-amber-400" />
+            <RefreshCw className="w-3 h-3 animate-spin text-amber-600" />
           ) : (
-            <AlertTriangle className="w-3.5 h-3.5 text-amber-400" />
+            <AlertTriangle className="w-3 h-3 text-amber-600" />
           )}
           <span>TOCTOU Tamper</span>
         </button>
@@ -134,12 +134,12 @@ export const RedTeamBar: React.FC<RedTeamBarProps> = ({ onSimulationTriggered })
         <button
           onClick={() => handleSimulate('CLEAN_PAYMENT')}
           disabled={loadingScenario !== null}
-          className="flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-emerald-950/80 hover:bg-emerald-900/90 text-emerald-300 border border-emerald-800/80 font-bold text-[11px] transition-all hover:scale-[1.02] shadow-sm shadow-emerald-950"
+          className="flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-emerald-50 hover:bg-emerald-100 text-emerald-700 border border-emerald-200 font-bold text-[11px] transition-all cursor-pointer hover:scale-[1.01] shadow-2xs"
         >
           {loadingScenario === 'CLEAN_PAYMENT' ? (
-            <RefreshCw className="w-3.5 h-3.5 animate-spin text-emerald-400" />
+            <RefreshCw className="w-3 h-3 animate-spin text-emerald-600" />
           ) : (
-            <Zap className="w-3.5 h-3.5 text-emerald-400" />
+            <Zap className="w-3 h-3 text-emerald-600" />
           )}
           <span>Routine Pay ($50)</span>
         </button>

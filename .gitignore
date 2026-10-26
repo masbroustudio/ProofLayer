@@ -8,6 +8,7 @@ coverage/
 *.sqlite
 *.sqlite-wal
 *.sqlite-shm
+*.tsbuildinfo
 /devpost/learner-profile.md
 .claude/
 agent/

@@ -23,54 +23,54 @@ export const EvidenceNodeComponent: React.FC<any> = ({ data, selected }) => {
   const isHeld = data.data?.decision === 'require_approval' || data.label?.includes('Approval');
 
   // Border & Glow styling
-  let borderClass = 'border-cyan-500/60 shadow-cyan-500/10';
-  let badgeBg = 'bg-cyan-950/80 text-cyan-400 border-cyan-800/60';
+  let borderClass = 'border-slate-200 shadow-xs hover:border-indigo-300';
+  let badgeBg = 'bg-indigo-50 text-indigo-700 border-indigo-200';
   let Icon = Bot;
 
   if (nodeType === 'INTENT') {
     Icon = Bot;
-    borderClass = 'border-cyan-500/60 shadow-cyan-500/10';
-    badgeBg = 'bg-cyan-950/80 text-cyan-400 border-cyan-800/60';
+    borderClass = 'border-slate-200 shadow-xs hover:border-indigo-300';
+    badgeBg = 'bg-indigo-50 text-indigo-700 border-indigo-200';
   } else if (nodeType === 'POLICY_CHECK') {
     if (isBlocked) {
       Icon = ShieldAlert;
-      borderClass = 'border-rose-500/80 shadow-rose-500/20';
-      badgeBg = 'bg-rose-950/80 text-rose-400 border-rose-800/60';
+      borderClass = 'border-rose-300 shadow-rose-100/50 shadow-md';
+      badgeBg = 'bg-rose-50 text-rose-700 border-rose-200';
     } else if (isHeld) {
       Icon = ShieldAlert;
-      borderClass = 'border-amber-500/80 shadow-amber-500/20';
-      badgeBg = 'bg-amber-950/80 text-amber-400 border-amber-800/60';
+      borderClass = 'border-amber-300 shadow-amber-100/50 shadow-md';
+      badgeBg = 'bg-amber-50 text-amber-800 border-amber-200';
     } else {
       Icon = ShieldCheck;
-      borderClass = 'border-emerald-500/80 shadow-emerald-500/20';
-      badgeBg = 'bg-emerald-950/80 text-emerald-400 border-emerald-800/60';
+      borderClass = 'border-emerald-300 shadow-emerald-100/50 shadow-md';
+      badgeBg = 'bg-emerald-50 text-emerald-700 border-emerald-200';
     }
   } else if (nodeType === 'APPROVAL') {
     Icon = UserCheck;
-    borderClass = 'border-violet-500/80 shadow-violet-500/20';
-    badgeBg = 'bg-violet-950/80 text-violet-400 border-violet-800/60';
+    borderClass = 'border-purple-300 shadow-purple-100/50 shadow-md';
+    badgeBg = 'bg-purple-50 text-purple-700 border-purple-200';
   } else if (nodeType === 'EXECUTION') {
     Icon = Wrench;
-    borderClass = 'border-emerald-500/80 shadow-emerald-500/20';
-    badgeBg = 'bg-emerald-950/80 text-emerald-400 border-emerald-800/60';
+    borderClass = 'border-emerald-300 shadow-emerald-100/50 shadow-md';
+    badgeBg = 'bg-emerald-50 text-emerald-700 border-emerald-200';
   }
 
   return (
     <div
-      className={`w-60 rounded-xl bg-[#0F1623] border p-3.5 shadow-xl transition-all cursor-pointer ${borderClass} ${
-        selected ? 'ring-2 ring-cyan-400 ring-offset-2 ring-offset-[#0B0F17]' : ''
+      className={`w-60 rounded-xl bg-white border p-3.5 shadow-xs transition-all cursor-pointer ${borderClass} ${
+        selected ? 'ring-2 ring-indigo-600 ring-offset-2 ring-offset-white' : ''
       }`}
     >
       {/* React Flow Handles for Horizontal Pipeline (Left -> Right) */}
       <Handle
         type="target"
         position={Position.Left}
-        className="w-2.5 h-2.5 bg-cyan-400 border-2 border-[#0B0F17]"
+        className="w-2.5 h-2.5 bg-indigo-600 border-2 border-white"
       />
       <Handle
         type="source"
         position={Position.Right}
-        className="w-2.5 h-2.5 bg-cyan-400 border-2 border-[#0B0F17]"
+        className="w-2.5 h-2.5 bg-indigo-600 border-2 border-white"
       />
 
       {/* Header: Node Type Badge & Icon */}
@@ -79,23 +79,23 @@ export const EvidenceNodeComponent: React.FC<any> = ({ data, selected }) => {
           <Icon className="w-2.5 h-2.5" />
           {nodeType.replace('_', ' ')}
         </span>
-        <span className="text-[10px] font-mono text-slate-500">
+        <span className="text-[10px] font-mono text-slate-400">
           {new Date(data.timestamp || Date.now()).toLocaleTimeString()}
         </span>
       </div>
 
       {/* Label / Description */}
-      <p className="text-xs font-semibold text-slate-200 line-clamp-2 mb-2 leading-tight">
+      <p className="text-xs font-bold text-slate-900 line-clamp-2 mb-2 leading-tight">
         {data.label}
       </p>
 
       {/* Cryptographic SHA-256 Digest Footprint */}
-      <div className="pt-2 border-t border-slate-800/80 flex items-center justify-between text-[10px] font-mono text-slate-400">
+      <div className="pt-2 border-t border-slate-100 flex items-center justify-between text-[10px] font-mono text-slate-500">
         <div className="flex items-center gap-1">
-          <Fingerprint className="w-3 h-3 text-cyan-400/80" />
+          <Fingerprint className="w-3 h-3 text-indigo-500" />
           <span>sha256:</span>
         </div>
-        <span className="text-slate-500 truncate max-w-[110px]">
+        <span className="text-slate-400 truncate max-w-[110px]">
           {data.nodeHash ? `${data.nodeHash.slice(0, 10)}...` : 'pending'}
         </span>
       </div>
