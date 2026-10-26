@@ -103,6 +103,6 @@ We engineered ProofLayer as a clean monorepo adhering strictly to the **Well-Arc
 
 ## 9. Links & Repositories
 
-* **Public GitHub Repository**: [github.com/your-username/ProofLayer](https://github.com/your-username/ProofLayer)
+* **Public GitHub Repository**: [https://github.com/masbroustudio/ProofLayer](https://github.com/masbroustudio/ProofLayer)
 * **Interactive Architecture & App Map**: [devpost/app-map.html](devpost/app-map.html)
 * **3-Minute Video Pitch**: [YouTube / Loom Link]

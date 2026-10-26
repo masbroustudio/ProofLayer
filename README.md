@@ -1,8 +1,8 @@
 # ProofLayer
 
 [![Hackathon](https://img.shields.io/badge/Devpost-Build%20With%20AI%3A%20Basics-blue.svg)](https://learn-ai-basics.devpost.com/)
-[![Tests](https://img.shields.io/badge/Tests-82%2F82%20Passing-brightgreen.svg)](https://github.com/challengepost/learn-ai-basics)
-[![CI](https://github.com/challengepost/learn-ai-basics/actions/workflows/ci.yml/badge.svg)](https://github.com/challengepost/learn-ai-basics)
+[![Tests](https://img.shields.io/badge/Tests-82%2F82%20Passing-brightgreen.svg)](https://github.com/masbroustudio/ProofLayer)
+[![CI](https://github.com/masbroustudio/ProofLayer/actions/workflows/ci.yml/badge.svg)](https://github.com/masbroustudio/ProofLayer/actions)
 [![Latency](https://img.shields.io/badge/Invariant%20Latency-%3C0.05ms-orange.svg)](#-pillar-3-innovation--idea-25)
 [![Token Cost](https://img.shields.io/badge/Runtime%20Cost-%240.00-brightgreen.svg)](#-pillar-3-innovation--idea-25)
 [![Compliance](https://img.shields.io/badge/Compliance-EU%20AI%20Act%20Art.%2014-purple.svg)](#-pillar-2-potential-impact-25)
@@ -144,7 +144,7 @@ ProofLayer uses `@libsql/client` (pure TypeScript/WebAssembly SQLite with WAL mo
 
 ### 1. Clone & Verify Test Suite (82/82 Tests Passing)
 ```bash
-git clone https://github.com/your-username/ProofLayer.git
+git clone https://github.com/masbroustudio/ProofLayer.git
 cd ProofLayer
 npm install
 
