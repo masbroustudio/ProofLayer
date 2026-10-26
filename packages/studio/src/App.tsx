@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { TopBar } from './components/TopBar.js';
+import { RedTeamBar } from './components/RedTeamBar.js';
 import { LiveConsole, type InterceptedItem } from './components/LiveConsole.js';
 import { EvidenceGraph } from './components/EvidenceGraph.js';
 import { DualPaneDrawer } from './components/DualPaneDrawer.js';
@@ -100,6 +101,9 @@ export const App: React.FC = () => {
     <div className="flex flex-col h-screen w-screen bg-[#0B0F17] text-slate-100 overflow-hidden">
       {/* Top Bar */}
       <TopBar connected={connected} policyCount={policyCount} />
+
+      {/* Red-Team Adversarial Sandbox Runner */}
+      <RedTeamBar onSimulationTriggered={() => {}} />
 
       {/* Main Workspace Layout */}
       <div className="flex flex-1 overflow-hidden relative">

@@ -49,7 +49,7 @@ Build mode: learn
   Learner check: Approve a held transaction in the modal, verify the DAG turns green with the execution result, and download the Trust Receipt.
   Commit: `feat(studio): add anti-TOCTOU cryptographic approval modal and trust receipt exporter`
 
-- [ ] **5. Red-Team Adversarial Sandbox for Live Video Demo**
+- [x] **5. Red-Team Adversarial Sandbox for Live Video Demo**
   Becomes usable: Top bar buttons (`Simulate Swarm Attack`, `Simulate TOCTOU Attack`, `Routine $50 Pass-Through`) execute pre-configured attack payloads directly into the live interceptor pipeline for an effortless 3-minute video pitch.
   Why now: Directly prepares the project for the Devpost "Presentation" criterion (25%) and video recording.
   PRD ref: `prd.md > Features and Behavior > 4. Red-Team Adversarial Sandbox Runner`
@@ -62,7 +62,7 @@ Build mode: learn
 ## Hands-on Checkpoints
 
 - [x] Early usable behavior explored — Slice 2 (Live console receiving real-time SSE tool calls)
-- [ ] Final kick-the-tires exploration and feedback completed — Slice 5 (Complete Red-Team attack demo working end-to-end)
+- [x] Final kick-the-tires exploration and feedback completed — Slice 5 (Complete Red-Team attack demo working end-to-end)
 
 ## Final Review
 

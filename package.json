@@ -9,7 +9,11 @@
   "scripts": {
     "test": "vitest run",
     "test:watch": "vitest",
-    "build": "tsc -b"
+    "build": "tsc -b",
+    "server": "npm --workspace=@prooflayer/server run dev",
+    "studio": "npm --workspace=@prooflayer/studio run dev",
+    "dev:server": "npm --workspace=@prooflayer/server run dev",
+    "dev:studio": "npm --workspace=@prooflayer/studio run dev"
   },
   "devDependencies": {
     "typescript": "^5.7.3",
