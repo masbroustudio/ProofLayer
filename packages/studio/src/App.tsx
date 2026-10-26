@@ -3,7 +3,9 @@ import { TopBar } from './components/TopBar.js';
 import { LiveConsole, type InterceptedItem } from './components/LiveConsole.js';
 import { EvidenceGraph } from './components/EvidenceGraph.js';
 import { DualPaneDrawer } from './components/DualPaneDrawer.js';
-import { Network, Terminal } from 'lucide-react';
+import { ApprovalModal } from './components/ApprovalModal.js';
+import { TrustReceiptModal } from './components/TrustReceiptModal.js';
+import { Network, Terminal, FileCheck2, UserCheck } from 'lucide-react';
 
 export const App: React.FC = () => {
   const [connected, setConnected] = useState<boolean>(false);
@@ -11,6 +13,10 @@ export const App: React.FC = () => {
   const [items, setItems] = useState<InterceptedItem[]>([]);
   const [selectedId, setSelectedId] = useState<string | null>(null);
   const [inspectedNode, setInspectedNode] = useState<any | null>(null);
+
+  // Modal States
+  const [showApprovalModal, setShowApprovalModal] = useState<boolean>(false);
+  const [showReceiptModal, setShowReceiptModal] = useState<boolean>(false);
 
   // 1. Initial Load: Policies & Recent Requests
   useEffect(() => {
@@ -79,6 +85,17 @@ export const App: React.FC = () => {
 
   const selectedItem = items.find((i) => i.id === selectedId);
 
+  const handleApprovalSuccess = () => {
+    if (!selectedId) return;
+    setItems((prev) =>
+      prev.map((item) =>
+        item.id === selectedId
+          ? { ...item, status: 'executed', reason: undefined }
+          : item
+      )
+    );
+  };
+
   return (
     <div className="flex flex-col h-screen w-screen bg-[#0B0F17] text-slate-100 overflow-hidden">
       {/* Top Bar */}
@@ -95,7 +112,7 @@ export const App: React.FC = () => {
         <main className="flex-1 flex flex-col h-full bg-[#0B0F17] relative overflow-hidden">
           {selectedItem ? (
             <div className="flex-1 flex flex-col h-full overflow-hidden relative">
-              {/* Request Banner */}
+              {/* Request Banner & Action Bar */}
               <div className="h-12 px-6 border-b border-slate-800 flex items-center justify-between bg-slate-900/40 z-10 shrink-0">
                 <div className="flex items-center gap-3">
                   <Network className="w-4 h-4 text-cyan-400" />
@@ -107,7 +124,7 @@ export const App: React.FC = () => {
                   </span>
                 </div>
 
-                <div className="flex items-center gap-2">
+                <div className="flex items-center gap-3">
                   <span className={`text-[10px] font-bold uppercase tracking-wider px-2.5 py-0.5 rounded-full border ${
                     selectedItem.status === 'executed'
                       ? 'bg-emerald-950/80 text-emerald-400 border-emerald-800/60'
@@ -117,6 +134,28 @@ export const App: React.FC = () => {
                   }`}>
                     {selectedItem.status.replace('_', ' ')}
                   </span>
+
+                  {/* Dual-Signature Approval Trigger */}
+                  {selectedItem.status === 'pending_approval' && (
+                    <button
+                      onClick={() => setShowApprovalModal(true)}
+                      className="px-3 py-1 rounded-lg bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold text-xs flex items-center gap-1.5 shadow-lg shadow-amber-500/20 transition-all animate-bounce"
+                    >
+                      <UserCheck className="w-3.5 h-3.5" />
+                      <span>Review & Authorize (Dual-Signature)</span>
+                    </button>
+                  )}
+
+                  {/* Trust Receipt Export Trigger */}
+                  {selectedItem.status === 'executed' && (
+                    <button
+                      onClick={() => setShowReceiptModal(true)}
+                      className="px-3 py-1 rounded-lg bg-cyan-950 hover:bg-cyan-900/80 text-cyan-400 border border-cyan-800/60 font-bold text-xs flex items-center gap-1.5 transition-all"
+                    >
+                      <FileCheck2 className="w-3.5 h-3.5" />
+                      <span>Export Trust Receipt (Art. 14)</span>
+                    </button>
+                  )}
                 </div>
               </div>
 
@@ -133,6 +172,30 @@ export const App: React.FC = () => {
                 node={inspectedNode}
                 onClose={() => setInspectedNode(null)}
               />
+
+              {/* Dual-Signature Approval Modal */}
+              {showApprovalModal && (
+                <ApprovalModal
+                  request={{
+                    id: selectedItem.id,
+                    agentId: selectedItem.agentId,
+                    action: selectedItem.action,
+                    payload: selectedItem.payload,
+                    payloadHash: selectedItem.payloadHash,
+                    reason: selectedItem.reason,
+                  }}
+                  onClose={() => setShowApprovalModal(false)}
+                  onApprovalSuccess={handleApprovalSuccess}
+                />
+              )}
+
+              {/* Compliance Trust Receipt Modal */}
+              {showReceiptModal && (
+                <TrustReceiptModal
+                  requestId={selectedItem.id}
+                  onClose={() => setShowReceiptModal(false)}
+                />
+              )}
             </div>
           ) : (
             <div className="flex-1 flex flex-col items-center justify-center text-slate-500 text-xs">

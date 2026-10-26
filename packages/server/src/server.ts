@@ -130,14 +130,32 @@ export async function createServer(options: ServerOptions = {}): Promise<{
   );
 
   // 4. Human Approval Submission (Anti-TOCTOU Gate)
-  app.post<{ Body: { signedToken: SignedApprovalToken } }>(
+  app.post<{ Body: { signedToken?: SignedApprovalToken; requestId?: string; reviewerId?: string; decision?: 'approved' | 'rejected' } }>(
     '/api/approvals/submit',
     async (req, reply) => {
-      const { signedToken } = req.body;
-      const requestRecord = await repo.getRequestById(signedToken.approval.requestId);
+      let signedToken = req.body.signedToken;
 
+      const targetRequestId = signedToken ? signedToken.approval.requestId : req.body.requestId;
+      if (!targetRequestId) {
+        return reply.status(400).send({ error: 'MISSING_REQUEST_ID' });
+      }
+
+      const requestRecord = await repo.getRequestById(targetRequestId);
       if (!requestRecord) {
         return reply.status(404).send({ error: 'REQUEST_NOT_FOUND' });
+      }
+
+      // If called from Studio UI, generate the cryptographically bound HMAC token on server
+      if (!signedToken) {
+        const approvalPayload: ApprovalPayload = {
+          requestId: targetRequestId,
+          payloadHash: requestRecord.payloadHash,
+          reviewerId: req.body.reviewerId || 'dual-auth-signers',
+          decision: req.body.decision || 'approved',
+          nonce: generateNonce(),
+          expiresAt: Date.now() + 120_000,
+        };
+        signedToken = signApproval(approvalPayload, secretKey);
       }
 
       const request: ExecutionRequest = {

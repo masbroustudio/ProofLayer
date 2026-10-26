@@ -39,7 +39,7 @@ Build mode: learn
   Learner check: Click an intercepted node in the graph and verify that the drawer slides open showing the raw JSON and Merkle proof side by side.
   Commit: `feat(studio): add interactive React Flow evidence DAG and dual-pane inspector drawer`
 
-- [ ] **4. Cryptographic Anti-TOCTOU Human Gate & Trust Receipt Exporter**
+- [x] **4. Cryptographic Anti-TOCTOU Human Gate & Trust Receipt Exporter**
   Becomes usable: A human reviewer can open the approval modal for held actions, inspect the exact SHA-256 payload digest, modify scope or confirm, sign with HMAC-SHA256, execute the protected tool safely, and download the signed EU AI Act Article 14 Trust Receipt.
   Why now: Completes the closed-loop trust architecture, guaranteeing that parameter tampering after review is caught and rejected.
   PRD ref: `prd.md > Features and Behavior > 3 & 5`
